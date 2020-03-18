@@ -30,6 +30,7 @@ class Music(models.Model):
     arrangement = models.CharField(max_length=50, null=True, blank=True)
     mix_mastering = models.CharField(max_length=50, null=True, blank=True)
     cover_art = models.CharField(max_length=50, null=True, blank=True)
+    top_chart = models.BooleanField(default=False)
     song = models.FileField(upload_to=music_directory_path)
     cover = models.ImageField(upload_to=music_directory_path, blank=True)
 
@@ -49,6 +50,7 @@ class Singer(models.Model):
     biography = models.TextField(null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     follows = models.PositiveIntegerField(default=0)
+    featured = models.BooleanField(default=False)
     cover = models.ImageField(upload_to=singer_directory_path, blank=True)
 
     def __str__(self):
