@@ -31,6 +31,7 @@ class Music(models.Model):
     mix_mastering = models.CharField(max_length=50, null=True, blank=True)
     cover_art = models.CharField(max_length=50, null=True, blank=True)
     top_chart = models.BooleanField(default=False)
+    premium = models.BooleanField(default=False)
     song = models.FileField(upload_to=music_directory_path)
     cover = models.ImageField(upload_to=music_directory_path, blank=True)
 
