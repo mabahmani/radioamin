@@ -566,8 +566,8 @@ $(function () {
                         "name": "I Love You Mummyyyyyyyyyy",
                         "artist": "Arebica Luna",
                         "album": "Mummy",
-                        "url": "../assets/audio/ringtone-1.mp3",
-                        "cover_art_url": "../assets/images/cover/small/1.jpg"
+                        "url": "/media/Ehsan%20Khajeh%20Amiri/Single/Bigharar/ehsan_khajeh_amiri_bigharar.mp3",
+                        "cover_art_url": "/media/Ehsan%20Khajeh%20Amiri/Single/Bigharar/ehsan_khajeh_amiri_bigharar.jpg"
                     }
                 ],
                 "playlists": {
