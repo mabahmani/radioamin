@@ -85,7 +85,7 @@ class Event(models.Model):
     name = models.CharField(max_length=50, null=False, default='Unnamed')
     info = models.TextField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
-    phone = models.CharField(max_length=20, null=False, default='Unnamed')
+    phone = models.CharField(max_length=20, null=False)
     email = models.EmailField(null=True, blank=True)
     due_time = models.DateTimeField()
     image = models.ImageField(upload_to=event_directory_path, blank=True)

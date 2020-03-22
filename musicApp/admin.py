@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from musicApp.models import Music, Singer, Genre, Album, Playlist
+from musicApp.models import Music, Singer, Genre, Album, Playlist, Event
 
 
 class MusicAdmin(admin.ModelAdmin):
@@ -18,3 +18,4 @@ admin.site.register(Singer, SingerAdmin)
 admin.site.register(Genre)
 admin.site.register(Album)
 admin.site.register(Playlist)
+admin.site.register(Event)
