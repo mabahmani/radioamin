@@ -17,6 +17,10 @@ def singer_directory_path(instance, filename):
     return '{0}/{1}'.format(instance.name, filename)
 
 
+def event_directory_path(instance, filename):
+    return '{0}/{1}/{2}'.format('event', instance.name, filename)
+
+
 class Music(models.Model):
     name = models.CharField(max_length=50, null=False, default='Unnamed')
     singer = models.ForeignKey('Singer', on_delete=models.CASCADE, null=False)
@@ -72,6 +76,20 @@ class Playlist(models.Model):
     name = models.CharField(max_length=50, null=False, default='Unnamed')
     cover = models.ImageField(upload_to=playlist_directory_path, blank=True)
     songs = models.ManyToManyField('Music')
+
+    def __str__(self):
+        return self.name
+
+
+class Event(models.Model):
+    name = models.CharField(max_length=50, null=False, default='Unnamed')
+    info = models.TextField(null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+    phone = models.CharField(max_length=20, null=False, default='Unnamed')
+    email = models.EmailField(null=True, blank=True)
+    due_time = models.DateTimeField()
+    image = models.ImageField(upload_to=event_directory_path, blank=True)
+    background_image = models.ImageField(upload_to=event_directory_path, blank=True)
 
     def __str__(self):
         return self.name
