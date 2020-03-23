@@ -474,9 +474,7 @@ $(function () {
         //=> Initialize countdown
         initCountdown: function () {
             var $countdown = $(".countdown");
-            var DATE = new Date();
-            DATE.setDate(DATE.getDate() + 5);
-
+            var DATE = new Date( $countdown.data('event_date') );
             $countdown.countdown(DATE, function (event) {
                 $(this).html(
                     event.strftime(
