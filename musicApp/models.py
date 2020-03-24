@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import timedelta, date
 
 
 def music_directory_path(instance, filename):
@@ -41,6 +42,32 @@ class Music(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MusicPlay(models.Model):
+    music = models.ForeignKey('Music', on_delete=models.CASCADE)
+    datePlay = models.DateField()
+    plays = models.PositiveIntegerField(default=0)
+
+    @staticmethod
+    def increment_play(music, date_today):
+        try:
+            mPlay = MusicPlay.objects.get(datePlay=date_today - timedelta(days=7), music=music)
+            mPlay.datePlay = date_today
+            mPlay.plays += 1
+            mPlay.save()
+
+        except MusicPlay.DoesNotExist:
+            try:
+                mPlay = MusicPlay.objects.get(datePlay=date_today, music=music)
+                mPlay.plays += 1
+                mPlay.save()
+            except MusicPlay.DoesNotExist:
+                mPlay = MusicPlay(music=music, datePlay=date_today, plays=1)
+                mPlay.save()
+
+    def __str__(self):
+        return '{0}/{1}/{2}'.format(self.music, self.datePlay, self.plays)
 
 
 class Genre(models.Model):
