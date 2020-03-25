@@ -655,8 +655,14 @@ $(function () {
         //=> Add audio in player on click of card
         addAudioInPlayer: function () {
             var $audio = $('a[data-audio]');
-
+            var $divAudio = $('div[data-audio]');
             $audio.on('click', function () {
+                var audioData = $(this).data('audio');
+                Amplitude.removeSong(0);
+                Amplitude.playNow(audioData);
+            })
+
+            $divAudio.on('click', function () {
                 var audioData = $(this).data('audio');
                 Amplitude.removeSong(0);
                 Amplitude.playNow(audioData);
