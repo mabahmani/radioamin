@@ -900,8 +900,8 @@
                 <div class="heading">
                     <div class="d-flex flex-wrap align-items-end">
                         <div class="flex-grow-1">
-                            <h4>Radio</h4>
-                            <p>Listen live now</p>
+                            <h4>Albums</h4>
+                            <p>Listen Newest Albums</p>
                         </div>
                         <a href="stations.html" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
                     </div>
@@ -909,94 +909,19 @@
                 </div>
 
                 <div class="carousel-item-6 arrow-pos-2">
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/cover/large/1.jpg" alt="International" class="card-img--radius-lg">
+                    {% for album in albums %}
+                        <div class="custom-card">
+                            <div class="custom-card--img">
+                                <a href="javascript:void(0);">
+                                    <img src="{{album.cover.url}}" alt="{{album.name}}" class="card-img--radius-lg">
+                                </a>
+                            </div>
+
+                            <a href="javascript:void(0);" class="custom-card--link mt-2">
+                                <h6 class="mb-0">{{album.name}}</h6>
                             </a>
                         </div>
-
-                        <a href="javascript:void(0);" class="custom-card--link mt-2">
-                            <h6 class="mb-0">International</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/cover/large/2.jpg" alt="Network" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="javascript:void(0);" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Network</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/cover/large/3.jpg" alt="Alpha Gamma" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="javascript:void(0);" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Alpha Gamma</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/cover/large/4.jpg" alt="Leanne Hutton" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="javascript:void(0);" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Leanne Hutton</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/cover/large/5.jpg" alt="K S N F" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="javascript:void(0);" class="custom-card--link mt-2">
-                            <h6 class="mb-0">K S N F</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/cover/large/6.jpg" alt="Clay Gandy" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="javascript:void(0);" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Clay Gandy</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/cover/large/9.jpg" alt="Get Reehl" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="javascript:void(0);" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Get Reehl</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/cover/large/10.jpg" alt="Morning one" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="javascript:void(0);" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Morning one</h6>
-                        </a>
-                    </div>
+                    {% endfor %}
                 </div>
 
             </div>
@@ -1017,54 +942,16 @@
                 </div>
 
                 <div class="carousel-item-6 arrow-pos-1">
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/1.jpg" alt="Remix Songs" class="card-img--radius-md">
-                                <span class="bg-blur">Remix Songs</span>
-                            </a>
+                    {% for genre in genres %}
+                        <div class="custom-card">
+                            <div class="custom-card--img">
+                                <a href="javascript:void(0);">
+                                    <img src="{{genre.cover.url}}" alt="{{ genre.name }}" class="card-img--radius-lg">
+                                    <span class="bg-blur">{{ genre.name }}</span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/2.jpg" alt="Rock Songs" class="card-img--radius-md">
-                                <span class="bg-blur">Rock Songs</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/3.jpg" alt="Sufi Songs" class="card-img--radius-md">
-                                <span class="bg-blur">Sufi Songs</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/4.jpg" alt="Romantic Songs" class="card-img--radius-md">
-                                <span class="bg-blur">Romantic Songs</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/5.jpg" alt="Sports Songs" class="card-img--radius-md">
-                                <span class="bg-blur">Sports Songs</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/6.jpg" alt="Old Songs" class="card-img--radius-lg">
-                                <span class="bg-blur">Old Songs</span>
-                            </a>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
             </div>

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from musicApp.models import Music, Event, MusicPlay, Singer, Playlist, Genre
+from musicApp.models import Music, Event, MusicPlay, Singer, Playlist, Genre, Album
 
 
 class HomePageView(TemplateView):
@@ -47,4 +47,6 @@ class HomePageView(TemplateView):
         context['featured_artists'] = Singer.objects.filter(featured=True)[:12]
         context['playlists'] = Playlist.objects.all()[:12]
         context['classics'] = self.get_classics()[:12]
+        context['albums'] = Album.objects.all()[:12]
+        context['genres'] = Genre.objects.all()[:12]
         return context

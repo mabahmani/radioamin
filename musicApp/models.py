@@ -22,6 +22,10 @@ def event_directory_path(instance, filename):
     return '{0}/{1}/{2}'.format('event', instance.name, filename)
 
 
+def genre_directory_path(instance, filename):
+    return '{0}/{1}/{2}'.format('genre', instance.name, filename)
+
+
 class Music(models.Model):
     name = models.CharField(max_length=50, null=False, default='Unnamed')
     singer = models.ForeignKey('Singer', on_delete=models.CASCADE, null=False)
@@ -38,7 +42,7 @@ class Music(models.Model):
     top_chart = models.BooleanField(default=False)
     premium = models.BooleanField(default=False)
     song = models.FileField(upload_to=music_directory_path)
-    cover = models.ImageField(upload_to=music_directory_path, blank=True)
+    cover = models.ImageField(upload_to=music_directory_path, blank=True, default='default_320_320')
 
     def __str__(self):
         return self.name
@@ -72,6 +76,7 @@ class MusicPlay(models.Model):
 
 class Genre(models.Model):
     name = models.CharField(max_length=50, null=False, default='Unnamed')
+    cover = models.ImageField(upload_to=genre_directory_path, blank=True, default='default_540_320.jpg')
 
     def __str__(self):
         return self.name
@@ -83,7 +88,7 @@ class Singer(models.Model):
     date_of_birth = models.DateField(null=True, blank=True)
     follows = models.PositiveIntegerField(default=0)
     featured = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to=singer_directory_path, blank=True)
+    cover = models.ImageField(upload_to=singer_directory_path, blank=True, default='default_320_320')
 
     def __str__(self):
         return self.name
@@ -93,7 +98,7 @@ class Album(models.Model):
     name = models.CharField(max_length=50, null=False, default='Unnamed')
     pub_date = models.DateField(null=True, blank=True)
     singer = models.ForeignKey('Singer', on_delete=models.CASCADE)
-    cover = models.ImageField(upload_to=album_directory_path, blank=True)
+    cover = models.ImageField(upload_to=album_directory_path, blank=True, default='default_320_320')
 
     def __str__(self):
         return '{0} / {1}'.format(self.singer, self.name)
@@ -101,7 +106,7 @@ class Album(models.Model):
 
 class Playlist(models.Model):
     name = models.CharField(max_length=50, null=False, default='Unnamed')
-    cover = models.ImageField(upload_to=playlist_directory_path, blank=True, null=False)
+    cover = models.ImageField(upload_to=playlist_directory_path, blank=True, default='default_540_320')
     songs = models.ManyToManyField('Music')
 
     def __str__(self):
@@ -116,7 +121,7 @@ class Event(models.Model):
     email = models.EmailField(null=True, blank=True)
     due_time = models.DateTimeField()
     image = models.ImageField(upload_to=event_directory_path, blank=True)
-    background_image = models.ImageField(upload_to=event_directory_path, blank=True)
+    background_image = models.ImageField(upload_to=event_directory_path)
 
     def __str__(self):
         return self.name
