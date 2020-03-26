@@ -32,4 +32,5 @@ class HomePageView(TemplateView):
         context['trending'] = self.get_trending()
         context['recent_music'] = Music.objects.all().order_by('-pub_date')[:7]
         context['all_time'] = Music.objects.all().order_by('-plays')[:7]
+        context['new_release'] = Music.objects.all().order_by('-pub_date')[:12]
         return context
