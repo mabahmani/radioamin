@@ -778,94 +778,19 @@
                 </div>
 
                 <div class="carousel-item-6 arrow-pos-2">
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="artist-details.html">
-                                <img src="../assets/images/cover/large/1.jpg" alt="Arebica Luna" class="card-img--radius-lg">
+                    {% for artist in featured_artists %}
+                        <div class="custom-card">
+                            <div class="custom-card--img">
+                                <a href="artist-details.html">
+                                    <img src="{{artist.cover.url}}" alt="{{artist.name}}" class="card-img--radius-lg">
+                                </a>
+                            </div>
+
+                            <a href="artist-details.html" class="custom-card--link mt-2">
+                                <h6 class="mb-0">{{artist.name}}</h6>
                             </a>
                         </div>
-
-                        <a href="artist-details.html" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Arebica Luna</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="artist-details.html">
-                                <img src="../assets/images/cover/large/2.jpg" alt="Gerrina Linda" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="artist-details.html" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Gerrina Linda</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="artist-details.html">
-                                <img src="../assets/images/cover/large/3.jpg" alt="Zunira Willy" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="artist-details.html" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Zunira Willy</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="artist-details.html">
-                                <img src="../assets/images/cover/large/4.jpg" alt="Johnny Marro" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="artist-details.html" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Johnny Marro</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="artist-details.html">
-                                <img src="../assets/images/cover/large/5.jpg" alt="Jina Moore" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="artist-details.html" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Jina Moore</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="artist-details.html">
-                                <img src="../assets/images/cover/large/6.jpg" alt="Rasomi Pelina" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="artist-details.html" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Rasomi Pelina</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="artist-details.html">
-                                <img src="../assets/images/cover/large/9.jpg" alt="Lenisa Gory" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="artist-details.html" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Lenisa Gory</h6>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="artist-details.html">
-                                <img src="../assets/images/cover/large/10.jpg" alt="Nutty Nina" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="artist-details.html" class="custom-card--link mt-2">
-                            <h6 class="mb-0">Nutty Nina</h6>
-                        </a>
-                    </div>
+                    {% endfor %}
                 </div>
 
             </div>
@@ -886,54 +811,18 @@
                 </div>
 
                 <div class="carousel-item-4 arrow-pos-1">
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/1.jpg" alt="DJ Remix" class="card-img--radius-lg">
-                                <span class="bg-blur">DJ Remix</span>
-                            </a>
+
+                    {% for playlist in playlists %}
+                        <div class="custom-card">
+                            <div class="custom-card--img">
+                                <a href="javascript:void(0);">
+                                    <img src="{{playlist.cover.url}}" alt="{{playlist.name}}" class="card-img--radius-lg">
+                                    <span class="bg-blur">{{playlist.name}}</span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/2.jpg" alt="Rock Band" class="card-img--radius-lg">
-                                <span class="bg-blur">Rock Band</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/3.jpg" alt="Solo Special" class="card-img--radius-lg">
-                                <span class="bg-blur">Solo Special</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/4.jpg" alt="Romantic" class="card-img--radius-lg">
-                                <span class="bg-blur">Romantic</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/5.jpg" alt="GYM" class="card-img--radius-lg">
-                                <span class="bg-blur">GYM</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <a href="javascript:void(0);">
-                                <img src="../assets/images/background/horizontal/6.jpg" alt="Retro Special" class="card-img--radius-lg">
-                                <span class="bg-blur">Retro Special</span>
-                            </a>
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
 
             </div>
@@ -954,265 +843,52 @@
                 </div>
 
                 <div class="carousel-item-6 arrow-pos-3">
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <div class="custom-card--info">
-                                <ul class="custom-card--labels d-flex">
-                                    <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                </ul>
-                                <div class="dropdown dropdown-icon">
-                                    <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ion-md-more"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link favorite">
-                                                <i class="la la-heart-o"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-download"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-share-alt"></i>
-                                            </a>
-                                        </li>
+                    {% for music in classics %}
+                        <div class="custom-card">
+                            <div class="custom-card--img">
+                                <div class="custom-card--info">
+                                    <ul class="custom-card--labels d-flex">
+                                        <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
                                     </ul>
+                                    <div class="dropdown dropdown-icon">
+                                        <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="ion-md-more"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li class="dropdown-item">
+                                                <a href="javascript:void(0);" class="dropdown-link favorite">
+                                                    <i class="la la-heart-o"></i>
+                                                </a>
+                                            </li>
+                                            <li class="dropdown-item">
+                                                <a href="javascript:void(0);" class="dropdown-link">
+                                                    <i class="la la-plus"></i>
+                                                </a>
+                                            </li>
+                                            <li class="dropdown-item">
+                                                <a href="javascript:void(0);" class="dropdown-link">
+                                                    <i class="la la-download"></i>
+                                                </a>
+                                            </li>
+                                            <li class="dropdown-item">
+                                                <a href="javascript:void(0);" class="dropdown-link">
+                                                    <i class="la la-share-alt"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <a href="javascript:void(0);" class="external" data-audio='{"name": "{{music.name}}", "artist": "{{music.singer}}", "album": "{{music.album}}", "url": "{{ music.song.url}}", "cover_art_url": "{{music.cover.url}}"}'>
+                                    <img src={{music.cover.url}} alt={{music.name}} class="card-img--radius-lg">
+                                </a>
                             </div>
-                            <a href="javascript:void(0);" class="external" data-audio='{"name": "I Love You Mummy", "artist": "Arebica Luna", "album": "Mummy", "url": "../assets/audio/ringtone-1.mp3", "cover_art_url": "../assets/images/cover/small/1.jpg"}'>
-                                <img src="../assets/images/cover/large/1.jpg" alt="I Love You Mummy" class="card-img--radius-lg">
+
+                            <a href="song-details.html" class="custom-card--link mt-2">
+                                <h6>{{music.name}}</h6>
+                                <p>{{music.singer}}</p>
                             </a>
                         </div>
-
-                        <a href="song-details.html" class="custom-card--link mt-2">
-                            <h6>I Love You Mummy</h6>
-                            <p>Arebica Luna</p>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <div class="custom-card--info">
-                                <div class="dropdown dropdown-icon">
-                                    <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ion-md-more"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link favorite">
-                                                <i class="la la-heart-o"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-download"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-share-alt"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <a href="javascript:void(0);" class="external" data-audio='{"name": "Shack your butty", "artist": "Gerrina Linda", "album": "Hot Shot", "url": "../assets/audio/ringtone-2.mp3", "cover_art_url": "../assets/images/cover/small/2.jpg"}'>
-                                <img src="../assets/images/cover/large/2.jpg" alt="Shack your butty" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="song-details.html" class="custom-card--link mt-2">
-                            <h6>Shack your butty</h6>
-                            <p>Gerrina Linda</p>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <div class="custom-card--info">
-                                <ul class="custom-card--labels d-flex">
-                                    <li><span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span></li>
-                                </ul>
-                                <div class="dropdown dropdown-icon">
-                                    <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ion-md-more"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link favorite">
-                                                <i class="la la-heart-o"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-download"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-share-alt"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <a href="javascript:void(0);" class="external" data-audio='{"name": "Do it your way(Female)", "artist": "Zunira Willy & Nutty Nina", "album": "Own Way", "url": "../assets/audio/ringtone-3.mp3", "cover_art_url": "../assets/images/cover/small/3.jpg"}'>
-                                <img src="../assets/images/cover/large/3.jpg" alt="Do it your way(Female)" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="song-details.html" class="custom-card--link mt-2">
-                            <h6>Do it your way(Female)</h6>
-                            <p>Zunira Willy & Nutty Nina</p>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <div class="custom-card--info">
-                                <div class="dropdown dropdown-icon">
-                                    <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ion-md-more"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link favorite">
-                                                <i class="la la-heart-o"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-download"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-share-alt"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <a href="javascript:void(0);" class="external" data-audio='{"name": "Say yes", "artist": "Johnny Marro", "album": "Say yes", "url": "../assets/audio/ringtone-4.mp3", "cover_art_url": "../assets/images/cover/small/4.jpg"}'>
-                                <img src="../assets/images/cover/large/4.jpg" alt="Say yes" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="song-details.html" class="custom-card--link mt-2">
-                            <h6>Say yes</h6>
-                            <p>Johnny Marro</p>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <div class="custom-card--info">
-                                <ul class="custom-card--labels d-flex">
-                                    <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                    <li><span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span></li>
-                                </ul>
-                                <div class="dropdown dropdown-icon">
-                                    <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ion-md-more"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link favorite">
-                                                <i class="la la-heart-o"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-download"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-share-alt"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <a href="javascript:void(0);" class="external" data-audio='{"name": "Where is your letter", "artist": "Jina Moore & Lenisa Gory", "album": "Letter", "url": "../assets/audio/ringtone-5.mp3", "cover_art_url": "../assets/images/cover/small/5.jpg"}'>
-                                <img src="../assets/images/cover/large/5.jpg" alt="Where is your letter" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="song-details.html" class="custom-card--link mt-2">
-                            <h6>Where is your letter</h6>
-                            <p>Jina Moore & Lenisa Gory</p>
-                        </a>
-                    </div>
-                    <div class="custom-card">
-                        <div class="custom-card--img">
-                            <div class="custom-card--info">
-                                <ul class="custom-card--labels d-flex">
-                                    <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                </ul>
-                                <div class="dropdown dropdown-icon">
-                                    <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="ion-md-more"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link favorite">
-                                                <i class="la la-heart-o"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-plus"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-download"></i>
-                                            </a>
-                                        </li>
-                                        <li class="dropdown-item">
-                                            <a href="javascript:void(0);" class="dropdown-link">
-                                                <i class="la la-share-alt"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <a href="javascript:void(0);" class="external" data-audio='{"name": "Hey not me", "artist": "Rasomi Pelina", "album": "Find Soul", "url": "../assets/audio/ringtone-6.mp3", "cover_art_url": "../assets/images/cover/small/6.jpg"}'>
-                                <img src="../assets/images/cover/large/6.jpg" alt="Hey not me" class="card-img--radius-lg">
-                            </a>
-                        </div>
-
-                        <a href="song-details.html" class="custom-card--link mt-2">
-                            <h6>Hey not me</h6>
-                            <p>Rasomi Pelina</p>
-                        </a>
-                    </div>
+                    {% endfor %}
                 </div>
 
             </div>

@@ -101,7 +101,7 @@ class Album(models.Model):
 
 class Playlist(models.Model):
     name = models.CharField(max_length=50, null=False, default='Unnamed')
-    cover = models.ImageField(upload_to=playlist_directory_path, blank=True)
+    cover = models.ImageField(upload_to=playlist_directory_path, blank=True, null=False)
     songs = models.ManyToManyField('Music')
 
     def __str__(self):
