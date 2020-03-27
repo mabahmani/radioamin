@@ -603,19 +603,19 @@ $(function () {
 
             $audio.on('click', function () {
                 var audioData = $(this).data('audio');
-                Amplitude.removeSong(0);
+                Amplitude.addSong(audioData);
                 Amplitude.playNow(audioData);
             });
 
             $divAudio.on('click', function () {
                 var audioData = $(this).data('audio');
-                Amplitude.removeSong(0);
+                Amplitude.addSong(audioData);
                 Amplitude.playNow(audioData);
-            })
+            });
 
             $audio_top_chart.on('click', function () {
                 var audioData = $(this).data('audio_top_chart');
-                Amplitude.removeSong(0);
+                Amplitude.addSong(audioData);
                 Amplitude.playNow(audioData);
             })
         }
