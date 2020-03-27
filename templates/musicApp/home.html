@@ -431,7 +431,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);" class="external" data-audio='{"name": "{{music.name}}", "artist": "{{music.singer}}", "album": "{{music.album}}", "url": "{{ music.song.url}}", "cover_art_url": "{{music.cover.url}}"}'>
+                                <a href="javascript:void(0);" class="external" data-audio_top_chart='{"name": "{{music.name}}", "artist": "{{music.singer}}", "album": "{{music.album}}", "url": "{{ music.song.url}}", "cover_art_url": "{{music.cover.url}}"}'>
                                     <img src={{music.cover.url}} alt={{music.name}} class="card-img--radius-lg">
                                 </a>
                             </div>
@@ -1596,7 +1596,6 @@
 <!-- Back Drop -->
 <div class="backdrop header-backdrop"></div>
 <div class="backdrop sidebar-backdrop"></div>
-
 <!-- Scripts -->
 <script src={% static "musicApp/js/vendors.bundle.js" %}></script>
 <script src={% static "musicApp/js/scripts.bundle.js" %}></script>

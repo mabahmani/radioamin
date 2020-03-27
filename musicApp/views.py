@@ -1,3 +1,5 @@
+import json
+
 from django.db.models import Avg
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -35,6 +37,20 @@ class HomePageView(TemplateView):
             return classic
         except Genre.DoesNotExist:
             return classic
+
+    @staticmethod
+    def get_init_playlist():
+        songs = list()
+        topChart = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+
+        for music in topChart:
+            song = {'name': music.name, 'artist': music.singer.name, 'album': music.album.name, 'url': music.song.url,
+                    'cover_art_url': music.cover.url}
+            json_data = json.dumps(song)
+            songs.append(json_data)
+
+        json_song = {'songs': songs}
+        return json.dumps(json_song)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

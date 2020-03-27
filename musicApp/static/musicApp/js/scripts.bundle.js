@@ -558,72 +558,9 @@ $(function () {
 
         //=> Initialize audio player
         initAudioPlayer: function () {
-            Amplitude.init({
-                "songs": [
-                    {
-                        "name": "I Love You Mummyyyyyyyyyy",
-                        "artist": "Arebica Luna",
-                        "album": "Mummy",
-                        "url": "/media/Ehsan%20Khajeh%20Amiri/Single/Bigharar/ehsan_khajeh_amiri_bigharar.mp3",
-                        "cover_art_url": "/media/Ehsan%20Khajeh%20Amiri/Single/Bigharar/ehsan_khajeh_amiri_bigharar.jpg"
-                    }
-                ],
-                "playlists": {
-                    "special": {
-                        songs: [
-                            {
-                                "name": "I Love You Mummy",
-                                "artist": "Arebica Luna",
-                                "album": "Mummy",
-                                "url": "../assets/audio/ringtone-1.mp3",
-                                "cover_art_url": "../assets/images/cover/small/1.jpg"
-                            },
-                            {
-                                "name": "Shack Your Butty",
-                                "artist": "Gerrina Linda",
-                                "album": "Hot Shot",
-                                "url": "../assets/audio/ringtone-2.mp3",
-                                "cover_art_url": "../assets/images/cover/small/2.jpg"
-                            },
-                            {
-                                "name": "Do It Your Way(Female)",
-                                "artist": "Zunira Willy & Nutty Nina",
-                                "album": "Own Way",
-                                "url": "../assets/audio/ringtone-3.mp3",
-                                "cover_art_url": "../assets/images/cover/small/3.jpg"
-                            },
-                            {
-                                "name": "Say Yes",
-                                "artist": "Johnny Marro",
-                                "album": "Say Yes",
-                                "url": "../assets/audio/ringtone-4.mp3",
-                                "cover_art_url": "../assets/images/cover/small/4.jpg"
-                            },
-                            {
-                                "name": "Where Is Your Letter",
-                                "artist": "Jina Moore & Lenisa Gory",
-                                "album": "Letter",
-                                "url": "../assets/audio/ringtone-5.mp3",
-                                "cover_art_url": "../assets/images/cover/small/5.jpg"
-                            },
-                            {
-                                "name": "Hey Not Me",
-                                "artist": "Rasomi Pelina",
-                                "album": "Find Soul",
-                                "url": "../assets/audio/ringtone-6.mp3",
-                                "cover_art_url": "../assets/images/cover/small/6.jpg"
-                            },
-                            {
-                                "name": "Deep Inside",
-                                "artist": "Pimila Holliwy",
-                                "album": "Deep Inside",
-                                "url": "../assets/audio/ringtone-7.mp3",
-                                "cover_art_url": "../assets/images/cover/small/7.jpg"
-                            }
-                        ]
-                    }
-                }
-            });
+            Amplitude.init(
+                {"songs": []}
+            );
         },
 
         //=> Volume dropdown click
@@ -656,14 +593,28 @@ $(function () {
         addAudioInPlayer: function () {
             var $audio = $('a[data-audio]');
             var $divAudio = $('div[data-audio]');
+            var $audio_top_chart = $('a[data-audio_top_chart]');
+
+            $audio_top_chart.each(function () {
+                var audioData = $(this).data('audio_top_chart');
+                Amplitude.addSong(audioData);
+                Amplitude.playNow(audioData)
+            });
+
             $audio.on('click', function () {
+                var audioData = $(this).data('audio');
+                Amplitude.removeSong(0);
+                Amplitude.playNow(audioData);
+            });
+
+            $divAudio.on('click', function () {
                 var audioData = $(this).data('audio');
                 Amplitude.removeSong(0);
                 Amplitude.playNow(audioData);
             })
 
-            $divAudio.on('click', function () {
-                var audioData = $(this).data('audio');
+            $audio_top_chart.on('click', function () {
+                var audioData = $(this).data('audio_top_chart');
                 Amplitude.removeSong(0);
                 Amplitude.playNow(audioData);
             })
