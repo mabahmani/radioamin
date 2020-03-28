@@ -597,8 +597,8 @@ $(function () {
 
             $audio_top_chart.each(function () {
                 var audioData = $(this).data('audio_top_chart');
-                Amplitude.addSong(audioData);
-                Amplitude.playNow(audioData)
+                //Amplitude.addSong(audioData);
+                //Amplitude.playNow(audioData)
             });
 
             $audio.on('click', function () {
@@ -624,6 +624,85 @@ $(function () {
     //=> Call class at document ready
     $(document).ready(AudioPlayer.init);
 });
+
+$(function () {
+    var searchInput = $("#searchInput");
+    searchInput.on('input',function () {
+        $.ajax({
+              url: "ajax/search/",
+              data: {search : searchInput.val()},
+              success: function(result){
+                  var artist_row = $(".search-card").find(".row").eq(0);
+                  var track_row = $(".search-card").find(".row").eq(1);
+                  var album_row = $(".search-card").find(".row").eq(2);
+
+                  if (result.artists.length === 0){
+                      artist_row.empty()
+                  }
+                  if (result.tracks.length === 0){
+                      track_row.empty()
+                  }
+                  if (result.albums.length === 0){
+                      album_row.empty()
+                  }
+                  artist_row.empty();
+                  $.each(result.artists, function (index, element) {
+                      artist_row.append('<div class="col-xl-2 col-md-4 col-6">\n' +
+                          '                 <div class="custom-card mb-3">\n' +
+                          '                     <a href="artist-details.html" class="text-dark">\n' +
+                          '                         <img src="'+element.cover+'" alt="'+element.name+'" class="card-img--radius-md">\n' +
+                          '                         <p class="text-truncate mt-2">'+element.name+'</p>\n' +
+                          '                     </a>\n' +
+                          '                 </div>\n' +
+                          '              </div>')
+
+
+                  });
+
+                  track_row.empty();
+                  $.each(result.tracks, function (index, element) {
+                      track_row.append('                                <div class="col-xl-4 col-md-6 col-12">\n' +
+                          '                                    <div class="custom-card mb-3">\n' +
+                          '                                        <a href="song-details.html" class="text-dark custom-card--inline">\n' +
+                          '                                            <div class="custom-card--inline-img">\n' +
+                          '                                                <img src="'+element.cover+'" alt="'+element.name+'" class="card-img--radius-sm">\n' +
+                          '                                            </div>\n' +
+                          '\n' +
+                          '                                            <div class="custom-card--inline-desc">\n' +
+                          '                                                <p class="text-truncate mb-0">'+element.name+'</p>\n' +
+                          '                                                <p class="text-truncate text-muted font-sm">'+element.singer+'</p>\n' +
+                          '                                            </div>\n' +
+                          '                                        </a>\n' +
+                          '                                    </div>\n' +
+                          '                                </div>')
+
+
+                  });
+
+                  album_row.empty();
+                  $.each(result.albums, function (index, element) {
+                      album_row.append('                                <div class="col-xl-4 col-md-6 col-12">\n' +
+                          '                                    <div class="custom-card mb-3">\n' +
+                          '                                        <a href="song-details.html" class="text-dark custom-card--inline">\n' +
+                          '                                            <div class="custom-card--inline-img">\n' +
+                          '                                                <img src="'+element.cover+'" alt="'+element.name+'" class="card-img--radius-sm">\n' +
+                          '                                            </div>\n' +
+                          '\n' +
+                          '                                            <div class="custom-card--inline-desc">\n' +
+                          '                                                <p class="text-truncate mb-0">'+element.name+'</p>\n' +
+                          '                                            </div>\n' +
+                          '                                        </a>\n' +
+                          '                                    </div>\n' +
+                          '                                </div>')
+                  });
+
+                  console.log(result)
+              }
+        });
+    })
+})
+
+
 /**
  * Theme Settings v1.0.0
  * Copyright 2019 Kri8thm
