@@ -691,12 +691,12 @@
                     {% for artist in featured_artists %}
                         <div class="custom-card">
                             <div class="custom-card--img">
-                                <a href="artist-details.html">
+                                <a href="{% url 'musicApp:artist_detail' pk=artist.pk %}">
                                     <img src="{{artist.cover.url}}" alt="{{artist.name}}" class="card-img--radius-lg">
                                 </a>
                             </div>
 
-                            <a href="artist-details.html" class="custom-card--link mt-2">
+                            <a href="{% url 'musicApp:artist_detail' pk=artist.pk %}" class="custom-card--link mt-2">
                                 <h6 class="mb-0">{{artist.name}}</h6>
                             </a>
                         </div>

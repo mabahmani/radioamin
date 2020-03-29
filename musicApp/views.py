@@ -3,7 +3,7 @@ import json
 from django.db.models import Avg
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 
 from musicApp.models import Music, Event, MusicPlay, Singer, Playlist, Genre, Album
 
@@ -100,3 +100,13 @@ def search(request):
         data = {'artists': artists, 'tracks': tracks, 'albums': albums}
 
     return JsonResponse(data, safe=False)
+
+
+class ArtistDetailView(DetailView):
+    model = Singer
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tracks'] = Music.objects.filter(singer=self.object).order_by('-pub_date')[:12]
+        context['albums'] = Album.objects.filter(singer=self.object).order_by('-pub_date')[:12]
+        return context
