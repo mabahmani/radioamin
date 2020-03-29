@@ -597,8 +597,8 @@ $(function () {
 
             $audio_top_chart.each(function () {
                 var audioData = $(this).data('audio_top_chart');
-                //Amplitude.addSong(audioData);
-                //Amplitude.playNow(audioData)
+                // Amplitude.addSong(audioData);
+                // Amplitude.playNow(audioData);
             });
 
             $audio.on('click', function () {
@@ -710,9 +710,7 @@ $(function () {
  *------------------------------------*/
 
 ;(function ($, window, document, undefined) {
-
     function Theme(element, options) {
-
         this.$body = $('body');
 
         /*
@@ -754,7 +752,7 @@ $(function () {
         var pageName = window.location.pathname.split('/').pop().split('.')[0];
         var pages = ['index', 'error'];
         var isSettingNotVisible = pages.includes(pageName);
-        if (pageName && !isSettingNotVisible) {
+        if (!isSettingNotVisible) {
             this.initialize();
         }
     }
