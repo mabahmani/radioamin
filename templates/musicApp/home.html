@@ -298,7 +298,7 @@
                             <h4>Top Charts</h4>
                             <p>Listen top chart</p>
                         </div>
-                        <a href="songs.html" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
+                        <a href="{% url 'musicApp:songs_top_chart' %}" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
                     </div>
                     <hr>
                 </div>
@@ -616,7 +616,7 @@
                             <h4>New Releases</h4>
                             <p>Listen recently release music</p>
                         </div>
-                        <a href="songs.html" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
+                        <a href="{% url 'musicApp:songs_new_release' %}" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
                     </div>
                     <hr>
                 </div>
@@ -747,7 +747,7 @@
                             <h4>Retro Classic</h4>
                             <p>Old is gold</p>
                         </div>
-                        <a href="songs.html" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
+                        <a href="{% url 'musicApp:songs_classic' %}" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
                     </div>
                     <hr>
                 </div>
@@ -813,7 +813,7 @@
                             <h4>Albums</h4>
                             <p>Listen Newest Albums</p>
                         </div>
-                        <a href="stations.html" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
+                        <a href="{% url 'musicApp:albums' %}" class="btn btn-sm btn-pill btn-air btn-primary">View All</a>
                     </div>
                     <hr>
                 </div>

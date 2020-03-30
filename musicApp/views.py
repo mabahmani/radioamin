@@ -131,3 +131,19 @@ class SongDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['album_songs'] = Music.objects.filter(album=self.object.album)
         return context
+
+
+class TopChartListView(ListView):
+    queryset = Music.objects.filter(top_chart=True).order_by('-pub_date')
+
+
+class NewReleaseListView(ListView):
+    queryset = Music.objects.all().order_by('-pub_date')
+
+
+class ClassicListView(ListView):
+    queryset = classic = Music.objects.filter(genre__name='Classic')
+
+
+class AlbumListView(ListView):
+    model = Album
