@@ -1,7 +1,7 @@
 from django.urls import path
 
 from musicApp.views import HomePageView, search, ArtistDetailView, ArtistListView, EventDetailView, GenreListView, \
-    SongDetailView, TopChartListView, NewReleaseListView, ClassicListView, AlbumListView
+    SongDetailView, TopChartListView, NewReleaseListView, ClassicListView, AlbumListView, PlaylistListView
 
 app_name = "musicApp"
 urlpatterns = [
@@ -16,5 +16,6 @@ urlpatterns = [
     path('songs/new_release/', NewReleaseListView.as_view(), name='songs_new_release'),
     path('songs/classic/', ClassicListView.as_view(), name='songs_classic'),
     path('albums/', AlbumListView.as_view(), name='albums'),
+    path('playlists/', PlaylistListView.as_view(), name='playlists'),
     path('ajax/search/', search, name='search'),
 ]

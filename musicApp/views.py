@@ -147,3 +147,7 @@ class ClassicListView(ListView):
 
 class AlbumListView(ListView):
     model = Album
+
+
+class PlaylistListView(ListView):
+    model = Playlist
