@@ -114,3 +114,7 @@ class ArtistDetailView(DetailView):
 
 class ArtistListView(ListView):
     model = Singer
+
+
+class EventDetailView(DetailView):
+    model = Event

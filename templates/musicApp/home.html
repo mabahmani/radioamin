@@ -366,7 +366,7 @@
                         <div class="col-sm-5 pb-4">
                             <div class="h-100 event event-v bg-img bg-img-radius-lg" style="background-image: url('{{events.0.image.url}}')">
                                 <div class="event-content p-4">
-                                    <a href="event-details.html"><h6>{{events.0.name}}</h6></a>
+                                    <a href="{% url 'musicApp:event_detail' pk=events.0.pk %}"><h6>{{events.0.name}}</h6></a>
                                     <span class="countdown mb-3" data-event_date='{{ events.0.due_time.isoformat }}'></span>
                                     <a href="#" class="btn btn-bold btn-pill btn-air btn-warning btn-sm">Buy Ticket</a>
                                 </div>
@@ -376,7 +376,7 @@
                             <div class="h-50 pb-4">
                                 <div class="h-100 event event-h bg-img bg-img-radius-lg" style="background-image: url('{{events.1.image.url}}')">
                                     <div class="event-content p-4">
-                                        <a href="event-details.html"><h6>{{events.1.name}}</h6></a>
+                                        <a href="{% url 'musicApp:event_detail' pk=events.1.pk %}"><h6>{{events.1.name}}</h6></a>
                                         <p>{{events.1.info}}</p>
                                     </div>
                                 </div>
@@ -384,7 +384,7 @@
                             <div class="h-50 pb-4">
                                 <div class="h-100 event event-h bg-img bg-img-radius-lg" style="background-image: url('{{events.2.image.url}}')">
                                     <div class="event-content p-4">
-                                        <a href="event-details.html"><h6>{{events.2.name}}</h6></a>
+                                        <a href="{% url 'musicApp:event_detail' pk=events.2.pk %}"><h6>{{events.2.name}}</h6></a>
                                         <p>{{events.2.info}}</p>
                                     </div>
                                 </div>
