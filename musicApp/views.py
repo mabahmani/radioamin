@@ -122,3 +122,12 @@ class EventDetailView(DetailView):
 
 class GenreListView(ListView):
     model = Genre
+
+
+class SongDetailView(DetailView):
+    model = Music
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['album_songs'] = Music.objects.filter(album=self.object.album)
+        return context

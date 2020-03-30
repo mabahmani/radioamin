@@ -536,7 +536,7 @@ kbd kbd {
 pre {
   display: block;
   font-size: 87.5%;
-  color: #222629;
+  /*color: #222629;*/
 }
 
 pre code {

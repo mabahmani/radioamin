@@ -202,7 +202,7 @@
                                 {% for track in search_music_init %}
                                     <div class="col-xl-4 col-md-6 col-12">
                                         <div class="custom-card mb-3">
-                                            <a href="song-details.html" class="text-dark custom-card--inline">
+                                            <a href="{% url 'musicApp:song_detail' pk=track.pk %}" class="text-dark custom-card--inline">
                                                 <div class="custom-card--inline-img">
                                                     <img src="{{track.cover.url}}" alt="{{track.name}}" class="card-img--radius-sm">
                                                 </div>
@@ -346,7 +346,7 @@
                                 </a>
                             </div>
 
-                            <a href="song-details.html" class="custom-card--link mt-2">
+                            <a href="{% url 'musicApp:song_detail' pk=music.pk %}" class="custom-card--link mt-2">
                                 <h6>{{ music.name }}</h6>
                                 <p>{{music.singer}}</p>
                             </a>
@@ -461,7 +461,7 @@
                                                         </a>
                                                     </li>
                                                     <li class="dropdown-item">
-                                                        <a href="song-details.html" class="dropdown-link">
+                                                        <a href="{% url 'musicApp:song_detail' pk=music.pk %}" class="dropdown-link">
                                                             <i class="la la-info-circle"></i>
                                                             <span>Song Info</span>
                                                         </a>
@@ -524,7 +524,7 @@
                                                         </a>
                                                     </li>
                                                     <li class="dropdown-item">
-                                                        <a href="song-details.html" class="dropdown-link">
+                                                        <a href="{% url 'musicApp:song_detail' pk=music.pk %}" class="dropdown-link">
                                                             <i class="la la-info-circle"></i>
                                                             <span>Song Info</span>
                                                         </a>
@@ -586,7 +586,7 @@
                                                         </a>
                                                     </li>
                                                     <li class="dropdown-item">
-                                                        <a href="song-details.html" class="dropdown-link">
+                                                        <a href="{% url 'musicApp:song_detail' pk=music.pk %}" class="dropdown-link">
                                                             <i class="la la-info-circle"></i>
                                                             <span>Song Info</span>
                                                         </a>
@@ -662,7 +662,7 @@
                                 </a>
                             </div>
 
-                            <a href="song-details.html" class="custom-card--link mt-2">
+                            <a href="{% url 'musicApp:song_detail' pk=music.pk %}" class="custom-card--link mt-2">
                                 <h6>{{music.name}}</h6>
                                 <p>{{music.singer}}</p>
                             </a>
@@ -793,7 +793,7 @@
                                 </a>
                             </div>
 
-                            <a href="song-details.html" class="custom-card--link mt-2">
+                            <a href="{% url 'musicApp:song_detail' pk=music.pk %}" class="custom-card--link mt-2">
                                 <h6>{{music.name}}</h6>
                                 <p>{{music.singer}}</p>
                             </a>
@@ -975,7 +975,7 @@
                             </a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="song-details.html" class="dropdown-link">
+                            <a href="songs-details.html" class="dropdown-link">
                                 <i class="la la-info-circle"></i>
                                 <span>Song Info</span>
                             </a>
@@ -1042,7 +1042,7 @@
                                         </a>
                                     </li>
                                     <li class="dropdown-item">
-                                        <a href="song-details.html" class="dropdown-link">
+                                        <a href="{% url 'musicApp:song_detail' pk=music.pk %}" class="dropdown-link">
                                             <i class="la la-info-circle"></i>
                                             <span>Song Info</span>
                                         </a>
