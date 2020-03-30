@@ -3,7 +3,7 @@ import json
 from django.db.models import Avg
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 
 from musicApp.models import Music, Event, MusicPlay, Singer, Playlist, Genre, Album
 
@@ -110,3 +110,7 @@ class ArtistDetailView(DetailView):
         context['tracks'] = Music.objects.filter(singer=self.object).order_by('-pub_date')[:12]
         context['albums'] = Album.objects.filter(singer=self.object).order_by('-pub_date')[:12]
         return context
+
+
+class ArtistListView(ListView):
+    model = Singer
