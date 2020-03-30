@@ -822,12 +822,12 @@
                     {% for album in albums %}
                         <div class="custom-card">
                             <div class="custom-card--img">
-                                <a href="javascript:void(0);">
+                                <a href="{% url 'musicApp:album_detail' pk=album.pk %}">
                                     <img src="{{album.cover.url}}" alt="{{album.name}}" class="card-img--radius-lg">
                                 </a>
                             </div>
 
-                            <a href="javascript:void(0);" class="custom-card--link mt-2">
+                            <a href="{% url 'musicApp:album_detail' pk=album.pk %}" class="custom-card--link mt-2">
                                 <h6 class="mb-0">{{album.name}}</h6>
                             </a>
                         </div>

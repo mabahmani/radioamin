@@ -133,6 +133,10 @@ class SongDetailView(DetailView):
         return context
 
 
+class AlbumDetailView(DetailView):
+    model = Album
+
+
 class TopChartListView(ListView):
     queryset = Music.objects.filter(top_chart=True).order_by('-pub_date')
 
