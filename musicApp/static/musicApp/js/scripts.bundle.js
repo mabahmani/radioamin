@@ -603,27 +603,88 @@ $(function () {
         //=> Add audio in player on click of card
         addAudioInPlayer: function () {
             var $audio = $('a[data-audio]');
-            var $divAudio = $('div[data-audio]');
-            var $audio_top_chart = $('a[data-audio_top_chart]');
 
             $audio.on('click', function () {
                 var audioData = $(this).data('audio');
-                Amplitude.addSong(audioData);
-                Amplitude.playNow(audioData);
+                AudioPlayer.checkAudioAndAdd(audioData)
             });
 
-            $divAudio.on('click', function () {
+            $('div').on('click','.data-audio', function () {
                 var audioData = $(this).data('audio');
-                Amplitude.addSong(audioData);
-                Amplitude.playNow(audioData);
+                AudioPlayer.checkAudioAndAdd(audioData)
             });
+        },
 
-            $audio_top_chart.on('click', function () {
-                var audioData = $(this).data('audio_top_chart');
-                Amplitude.addSong(audioData);
-                Amplitude.playNow(audioData);
-            })
-        }
+        checkAudioAndAdd: function(audioData){
+                let newSong = true;
+                $.each(Amplitude.getSongs(), function (index, element) {
+                    if (audioData.name === element.name) {
+                        if (audioData.artist === element.artist) {
+                            Amplitude.playSongAtIndex(index);
+                            newSong = false;
+                            return false;
+                        }
+                    }
+                });
+                if (newSong) {
+                    Amplitude.addSong(audioData);
+                    Amplitude.playNow(audioData);
+
+                    $(".list-group").append(
+                        '<li class="custom-list--item list-group-item">\n' +
+                        '                        <div class="text-dark custom-card--inline data-audio"  data-audio=\'{"name": "'+audioData.name+'", "artist": "'+audioData.artist+'", "album": "'+audioData.album+'", "url": "'+audioData.url+'", "cover_art_url": "'+audioData.cover_art_url+'"}\'>\n' +
+                        '                            <div class="custom-card--inline-img">\n' +
+                        '                                <img src="'+audioData.cover_art_url+'" alt="" class="card-img--radius-sm">\n' +
+                        '                            </div>\n' +
+                        '\n' +
+                        '                            <div class="custom-card--inline-desc">\n' +
+                        '                                <p class="text-truncate mb-0">'+ audioData.name +'</p>\n' +
+                        '                                <p class="text-truncate text-muted font-sm">'+ audioData.artist +'</p>\n' +
+                        '                            </div>\n' +
+                        '                        </div>\n' +
+                        '                        <ul class="custom-card--labels d-flex ml-auto">\n' +
+                        '                            <li class="dropleft">\n' +
+                        '                                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
+                        '                                    <i class="la la-ellipsis-h"></i>\n' +
+                        '                                </a>\n' +
+                        '                                <ul class="dropdown-menu">\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="javascript:void(0);" class="dropdown-link favorite">\n' +
+                        '                                            <i class="la la-heart-o"></i>\n' +
+                        '                                            <span>Favorite</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                        '                                            <i class="la la-plus"></i>\n' +
+                        '                                            <span>Add to Playlist</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                        '                                            <i class="la la-download"></i>\n' +
+                        '                                            <span>Download</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                        '                                            <i class="la la-share-alt"></i>\n' +
+                        '                                            <span>Share</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="{% url \'musicApp:song_detail\' pk=music.pk %}" class="dropdown-link">\n' +
+                        '                                            <i class="la la-info-circle"></i>\n' +
+                        '                                            <span>Song Info</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                </ul>\n' +
+                        '                            </li>\n' +
+                        '                        </ul>\n' +
+                        '                    </li>'
+                    )
+                }
+            }
     };
 
     //=> Call class at document ready
