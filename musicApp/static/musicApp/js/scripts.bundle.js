@@ -695,7 +695,7 @@ $(function () {
     var searchInput = $("#searchInput");
     searchInput.on('input', function () {
         $.ajax({
-            url: "ajax/search/",
+            url: "/ajax/search/",
             data: {search: searchInput.val()},
             success: function (result) {
                 var artist_row = $(".search-card").find(".row").eq(0);
@@ -761,8 +761,6 @@ $(function () {
                         '                                    </div>\n' +
                         '                                </div>')
                 });
-
-                console.log(result)
             }
         });
     })
