@@ -311,7 +311,9 @@
                             <div class="custom-card--img">
                                 <div class="custom-card--info">
                                     <ul class="custom-card--labels d-flex">
-                                        <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+                                        {% if music.premium %}
+                                            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+                                        {% endif %}
                                     </ul>
                                     <div class="dropdown dropdown-icon">
                                         <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -430,8 +432,9 @@
                                             </div>
                                         </div>
                                         <ul class="custom-card--labels d-flex ml-auto">
-                                            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                            <li class="dropleft">
+                                            {% if music.premium %}
+                                                <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+                                            {% endif %}                                            <li class="dropleft">
                                                 <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="la la-ellipsis-h"></i>
                                                 </a>
@@ -493,8 +496,9 @@
                                             </div>
                                         </div>
                                         <ul class="custom-card--labels d-flex ml-auto">
-                                            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                            <li class="dropleft">
+                                            {% if music.premium %}
+                                                <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+                                            {% endif %}                                            <li class="dropleft">
                                                 <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="la la-ellipsis-h"></i>
                                                 </a>
@@ -555,8 +559,9 @@
                                             </div>
                                         </div>
                                         <ul class="custom-card--labels d-flex ml-auto">
-                                            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                            <li class="dropleft">
+                                            {% if music.premium %}
+                                                <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+                                            {% endif %}                                            <li class="dropleft">
                                                 <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="la la-ellipsis-h"></i>
                                                 </a>
@@ -627,8 +632,9 @@
                             <div class="custom-card--img">
                                 <div class="custom-card--info">
                                     <ul class="custom-card--labels d-flex">
-                                        <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                    </ul>
+                                        {% if music.premium %}
+                                            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+                                        {% endif %}                                    </ul>
                                     <div class="dropdown dropdown-icon">
                                         <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ion-md-more"></i>
@@ -758,8 +764,9 @@
                             <div class="custom-card--img">
                                 <div class="custom-card--info">
                                     <ul class="custom-card--labels d-flex">
-                                        <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                    </ul>
+                                        {% if music.premium %}
+                                            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
+                                        {% endif %}                                    </ul>
                                     <div class="dropdown dropdown-icon">
                                         <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ion-md-more"></i>
