@@ -385,7 +385,7 @@
                 <div class="col-xl-9 col-lg-8 col-sm-7">
                     <div class="row pt-4">
                         <div class="col-xl-8 col-lg-6">
-                            <h5>{{singer.name}}</h5>
+                            <h5 class="singer-name">{{singer.name}}</h5>
                             <p>DOB: {{singer.date_of_birth}}</p>
                             <div class="text-warning stars">
                                 <i class="la la-star"></i>
@@ -395,7 +395,7 @@
                                 <i class="la la-star-half-empty"></i>
                             </div>
                             <div class="mt-4">
-                                <a href="javascript:void(0);" class="btn btn-pill btn-air btn-bold btn-danger">Play All</a>
+                                <a href="javascript:void(0);" class="btn btn-pill btn-air btn-bold btn-danger play-all">Play All</a>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6">
@@ -446,7 +446,7 @@
                             {% for track in tracks %}
                             <!-- Begin | Custom List Item -->
                             <div class="custom-list--item">
-                                <div class="text-dark custom-card--inline">
+                                <div class="text-dark custom-card--inline data-audio" data-audio='{"name": "{{track.name}}", "artist": "{{track.singer.name}}", "album": "{{track.album}}", "url": "{{ track.song.url}}", "cover_art_url": "{{track.cover.url}}"}'>
                                     <div class="custom-card--inline-img">
                                         <img src="{{track.cover.url}}" alt="" class="card-img--radius-sm">
                                     </div>
