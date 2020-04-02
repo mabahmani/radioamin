@@ -245,26 +245,26 @@ $(function () {
                 e.preventDefault();
 
                 var _this = $(this);
-                var url = _this.attr('href') !== 'undefined' ?  _this.attr('href') : null ;
+                var url = _this.attr('href') !== 'undefined' ? _this.attr('href') : null;
                 if (url && AppConfig.filterLink(url)) {
-                    AppConfig.ajaxLoading(url,true);
+                    AppConfig.ajaxLoading(url, true);
                 }
             });
             window.addEventListener("popstate", function (event) {
                 //window.location.reload()
-                AppConfig.ajaxLoading(window.location,false);
+                AppConfig.ajaxLoading(window.location, false);
             },)
         },
 
         //=> Filter link a page link or not
         filterLink: function (link) {
-            if(link === null) {
+            if (link === null) {
                 return false;
-            } else if(link.substr(0, 1) === '#') {
+            } else if (link.substr(0, 1) === '#') {
                 return false;
-            } else if(link.length >= 10 && link.substr(0,10).toLowerCase() === 'javascript') {
+            } else if (link.length >= 10 && link.substr(0, 10).toLowerCase() === 'javascript') {
                 return false;
-            } else if(link.length < 1) {
+            } else if (link.length < 1) {
                 return false;
             }
 
@@ -272,7 +272,7 @@ $(function () {
         },
 
         //=> Ajax loading for html pages
-        ajaxLoading: function (url,push) {
+        ajaxLoading: function (url, push) {
             if (push) {
                 var History = window.history;
                 History.pushState("", "", url);
@@ -287,7 +287,7 @@ $(function () {
                 replaceImageBanner(content);
                 replaceContent(content);
                 setActiveClass();
-            }).fail(function(jqXHR, textStatus){
+            }).fail(function (jqXHR, textStatus) {
                 alert('Something went wrong. Please try again');
                 return false;
             });
@@ -308,7 +308,7 @@ $(function () {
             // Replace old page html with new one
             function replaceContent(newContent) {
                 $('#appRoute').html(newContent.find('#appRoute').html());
-                $('#wrapper').animate({scrollTop:0}, 'fast');
+                $('#wrapper').animate({scrollTop: 0}, 'fast');
                 //Analytics.init();
                 AppConfig.reInitFunction();
             }
@@ -467,7 +467,7 @@ $(function () {
                 width: activeWidth
             });
 
-            $lineTabsItem.on("click", function() {
+            $lineTabsItem.on("click", function () {
                 activePos = $(this).position();
                 activeWidth = $(this).width();
                 $(this).parent().parent().find('.' + lineClassName).stop().css({
@@ -480,7 +480,7 @@ $(function () {
         //=> Initialize countdown
         initCountdown: function () {
             var $countdown = $(".countdown");
-            var DATE = new Date( $countdown.data('event_date') );
+            var DATE = new Date($countdown.data('event_date'));
             $countdown.countdown(DATE, function (event) {
                 $(this).html(
                     event.strftime(
@@ -540,7 +540,7 @@ $(window).on('load', function () {
     $('#loading').fadeOut(1000);
 });
 
-$('#wrapper').on("scroll", function() {
+$('#wrapper').on("scroll", function () {
     $('#header').toggleClass('scrolled', $(this).scrollTop() > 80);
 });
 
@@ -565,12 +565,12 @@ $(function () {
         //=> Initialize audio player
         initAudioPlayer: function () {
             $.ajax({
-              url: "ajax/init_songs/",
-              success: function(result){
-                  Amplitude.init({
-                      "songs" : result
-                  });
-              }
+                url: "ajax/init_songs/",
+                success: function (result) {
+                    Amplitude.init({
+                        "songs": result
+                    });
+                }
             })
         },
 
@@ -609,37 +609,190 @@ $(function () {
                 AudioPlayer.checkAudioAndAdd(audioData)
             });
 
-            $('div').on('click','.data-audio', function () {
+            $('div').on('click', '.data-audio', function () {
                 var audioData = $(this).data('audio');
                 AudioPlayer.checkAudioAndAdd(audioData)
             });
         },
 
-        checkAudioAndAdd: function(audioData){
-                let newSong = true;
-                $.each(Amplitude.getSongs(), function (index, element) {
-                    if (audioData.name === element.name) {
-                        if (audioData.artist === element.artist) {
-                            Amplitude.playSongAtIndex(index);
-                            newSong = false;
-                            return false;
-                        }
+        checkAudioAndAdd: function (audioData) {
+            let newSong = true;
+            $.each(Amplitude.getSongs(), function (index, element) {
+                if (audioData.name === element.name) {
+                    if (audioData.artist === element.artist) {
+                        Amplitude.playSongAtIndex(index);
+                        newSong = false;
+                        return false;
                     }
-                });
-                if (newSong) {
-                    Amplitude.addSong(audioData);
-                    Amplitude.playNow(audioData);
+                }
+            });
+            if (newSong) {
+                Amplitude.addSong(audioData);
+                Amplitude.playNow(audioData);
 
+                $(".list-group").append(
+                    '<li class="custom-list--item list-group-item">\n' +
+                    '                        <div class="text-dark custom-card--inline data-audio"  data-audio=\'{"name": "' + audioData.name + '", "artist": "' + audioData.artist + '", "album": "' + audioData.album + '", "url": "' + audioData.url + '", "cover_art_url": "' + audioData.cover_art_url + '"}\'>\n' +
+                    '                            <div class="custom-card--inline-img">\n' +
+                    '                                <img src="' + audioData.cover_art_url + '" alt="" class="card-img--radius-sm">\n' +
+                    '                            </div>\n' +
+                    '\n' +
+                    '                            <div class="custom-card--inline-desc">\n' +
+                    '                                <p class="text-truncate mb-0">' + audioData.name + '</p>\n' +
+                    '                                <p class="text-truncate text-muted font-sm">' + audioData.artist + '</p>\n' +
+                    '                            </div>\n' +
+                    '                        </div>\n' +
+                    '                        <ul class="custom-card--labels d-flex ml-auto">\n' +
+                    '                            <li class="dropleft">\n' +
+                    '                                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
+                    '                                    <i class="la la-ellipsis-h"></i>\n' +
+                    '                                </a>\n' +
+                    '                                <ul class="dropdown-menu">\n' +
+                    '                                    <li class="dropdown-item">\n' +
+                    '                                        <a href="javascript:void(0);" class="dropdown-link favorite">\n' +
+                    '                                            <i class="la la-heart-o"></i>\n' +
+                    '                                            <span>Favorite</span>\n' +
+                    '                                        </a>\n' +
+                    '                                    </li>\n' +
+                    '                                    <li class="dropdown-item">\n' +
+                    '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                    '                                            <i class="la la-plus"></i>\n' +
+                    '                                            <span>Add to Playlist</span>\n' +
+                    '                                        </a>\n' +
+                    '                                    </li>\n' +
+                    '                                    <li class="dropdown-item">\n' +
+                    '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                    '                                            <i class="la la-download"></i>\n' +
+                    '                                            <span>Download</span>\n' +
+                    '                                        </a>\n' +
+                    '                                    </li>\n' +
+                    '                                    <li class="dropdown-item">\n' +
+                    '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                    '                                            <i class="la la-share-alt"></i>\n' +
+                    '                                            <span>Share</span>\n' +
+                    '                                        </a>\n' +
+                    '                                    </li>\n' +
+                    '                                    <li class="dropdown-item">\n' +
+                    '                                        <a href="{% url \'musicApp:song_detail\' pk=music.pk %}" class="dropdown-link">\n' +
+                    '                                            <i class="la la-info-circle"></i>\n' +
+                    '                                            <span>Song Info</span>\n' +
+                    '                                        </a>\n' +
+                    '                                    </li>\n' +
+                    '                                </ul>\n' +
+                    '                            </li>\n' +
+                    '                        </ul>\n' +
+                    '                    </li>'
+                )
+            }
+        }
+    };
+
+    //=> Call class at document ready
+    $(document).ready(AudioPlayer.init);
+});
+
+$(function () {
+    var searchInput = $("#searchInput");
+    searchInput.on('input', function () {
+        $.ajax({
+            url: "ajax/search/",
+            data: {search: searchInput.val()},
+            success: function (result) {
+                var artist_row = $(".search-card").find(".row").eq(0);
+                var track_row = $(".search-card").find(".row").eq(1);
+                var album_row = $(".search-card").find(".row").eq(2);
+
+                if (result.artists.length === 0) {
+                    artist_row.empty()
+                }
+                if (result.tracks.length === 0) {
+                    track_row.empty()
+                }
+                if (result.albums.length === 0) {
+                    album_row.empty()
+                }
+                artist_row.empty();
+                $.each(result.artists, function (index, element) {
+                    artist_row.append('<div class="col-xl-2 col-md-4 col-6">\n' +
+                        '                 <div class="custom-card mb-3">\n' +
+                        '                     <a href="artist-details.html" class="text-dark">\n' +
+                        '                         <img src="' + element.cover + '" alt="' + element.name + '" class="card-img--radius-md">\n' +
+                        '                         <p class="text-truncate mt-2">' + element.name + '</p>\n' +
+                        '                     </a>\n' +
+                        '                 </div>\n' +
+                        '              </div>')
+
+
+                });
+
+                track_row.empty();
+                $.each(result.tracks, function (index, element) {
+                    track_row.append('                                <div class="col-xl-4 col-md-6 col-12">\n' +
+                        '                                    <div class="custom-card mb-3">\n' +
+                        '                                        <a href="song-details.html" class="text-dark custom-card--inline">\n' +
+                        '                                            <div class="custom-card--inline-img">\n' +
+                        '                                                <img src="' + element.cover + '" alt="' + element.name + '" class="card-img--radius-sm">\n' +
+                        '                                            </div>\n' +
+                        '\n' +
+                        '                                            <div class="custom-card--inline-desc">\n' +
+                        '                                                <p class="text-truncate mb-0">' + element.name + '</p>\n' +
+                        '                                                <p class="text-truncate text-muted font-sm">' + element.singer + '</p>\n' +
+                        '                                            </div>\n' +
+                        '                                        </a>\n' +
+                        '                                    </div>\n' +
+                        '                                </div>')
+
+
+                });
+
+                album_row.empty();
+                $.each(result.albums, function (index, element) {
+                    album_row.append('                                <div class="col-xl-4 col-md-6 col-12">\n' +
+                        '                                    <div class="custom-card mb-3">\n' +
+                        '                                        <a href="song-details.html" class="text-dark custom-card--inline">\n' +
+                        '                                            <div class="custom-card--inline-img">\n' +
+                        '                                                <img src="' + element.cover + '" alt="' + element.name + '" class="card-img--radius-sm">\n' +
+                        '                                            </div>\n' +
+                        '\n' +
+                        '                                            <div class="custom-card--inline-desc">\n' +
+                        '                                                <p class="text-truncate mb-0">' + element.name + '</p>\n' +
+                        '                                            </div>\n' +
+                        '                                        </a>\n' +
+                        '                                    </div>\n' +
+                        '                                </div>')
+                });
+
+                console.log(result)
+            }
+        });
+    })
+});
+
+$(function () {
+    $("#playlist-item a").on('click', function () {
+        let playlistName = $(this).find('span').text();
+        $.ajax({
+            url: "ajax/get_playlist_songs/",
+            data: {playlist: playlistName},
+            success: function (result) {
+                Amplitude.init({
+                    "songs": result
+                });
+
+                Amplitude.playSongAtIndex(0);
+
+                $(".list-group").empty();
+                $.each(result, function (index, element) {
                     $(".list-group").append(
                         '<li class="custom-list--item list-group-item">\n' +
-                        '                        <div class="text-dark custom-card--inline data-audio"  data-audio=\'{"name": "'+audioData.name+'", "artist": "'+audioData.artist+'", "album": "'+audioData.album+'", "url": "'+audioData.url+'", "cover_art_url": "'+audioData.cover_art_url+'"}\'>\n' +
+                        '                        <div class="text-dark custom-card--inline data-audio"  data-audio=\'{"name": "' + element.name + '", "artist": "' + element.artist + '", "album": "' + element.album + '", "url": "' + element.url + '", "cover_art_url": "' + element.cover_art_url + '"}\'>\n' +
                         '                            <div class="custom-card--inline-img">\n' +
-                        '                                <img src="'+audioData.cover_art_url+'" alt="" class="card-img--radius-sm">\n' +
+                        '                                <img src="' + element.cover_art_url + '" alt="" class="card-img--radius-sm">\n' +
                         '                            </div>\n' +
                         '\n' +
                         '                            <div class="custom-card--inline-desc">\n' +
-                        '                                <p class="text-truncate mb-0">'+ audioData.name +'</p>\n' +
-                        '                                <p class="text-truncate text-muted font-sm">'+ audioData.artist +'</p>\n' +
+                        '                                <p class="text-truncate mb-0">' + element.name + '</p>\n' +
+                        '                                <p class="text-truncate text-muted font-sm">' + element.artist + '</p>\n' +
                         '                            </div>\n' +
                         '                        </div>\n' +
                         '                        <ul class="custom-card--labels d-flex ml-auto">\n' +
@@ -683,89 +836,13 @@ $(function () {
                         '                        </ul>\n' +
                         '                    </li>'
                     )
-                }
+                });
+
+
             }
-    };
-
-    //=> Call class at document ready
-    $(document).ready(AudioPlayer.init);
-});
-
-$(function () {
-    var searchInput = $("#searchInput");
-    searchInput.on('input',function () {
-        $.ajax({
-              url: "ajax/search/",
-              data: {search : searchInput.val()},
-              success: function(result){
-                  var artist_row = $(".search-card").find(".row").eq(0);
-                  var track_row = $(".search-card").find(".row").eq(1);
-                  var album_row = $(".search-card").find(".row").eq(2);
-
-                  if (result.artists.length === 0){
-                      artist_row.empty()
-                  }
-                  if (result.tracks.length === 0){
-                      track_row.empty()
-                  }
-                  if (result.albums.length === 0){
-                      album_row.empty()
-                  }
-                  artist_row.empty();
-                  $.each(result.artists, function (index, element) {
-                      artist_row.append('<div class="col-xl-2 col-md-4 col-6">\n' +
-                          '                 <div class="custom-card mb-3">\n' +
-                          '                     <a href="artist-details.html" class="text-dark">\n' +
-                          '                         <img src="'+element.cover+'" alt="'+element.name+'" class="card-img--radius-md">\n' +
-                          '                         <p class="text-truncate mt-2">'+element.name+'</p>\n' +
-                          '                     </a>\n' +
-                          '                 </div>\n' +
-                          '              </div>')
-
-
-                  });
-
-                  track_row.empty();
-                  $.each(result.tracks, function (index, element) {
-                      track_row.append('                                <div class="col-xl-4 col-md-6 col-12">\n' +
-                          '                                    <div class="custom-card mb-3">\n' +
-                          '                                        <a href="song-details.html" class="text-dark custom-card--inline">\n' +
-                          '                                            <div class="custom-card--inline-img">\n' +
-                          '                                                <img src="'+element.cover+'" alt="'+element.name+'" class="card-img--radius-sm">\n' +
-                          '                                            </div>\n' +
-                          '\n' +
-                          '                                            <div class="custom-card--inline-desc">\n' +
-                          '                                                <p class="text-truncate mb-0">'+element.name+'</p>\n' +
-                          '                                                <p class="text-truncate text-muted font-sm">'+element.singer+'</p>\n' +
-                          '                                            </div>\n' +
-                          '                                        </a>\n' +
-                          '                                    </div>\n' +
-                          '                                </div>')
-
-
-                  });
-
-                  album_row.empty();
-                  $.each(result.albums, function (index, element) {
-                      album_row.append('                                <div class="col-xl-4 col-md-6 col-12">\n' +
-                          '                                    <div class="custom-card mb-3">\n' +
-                          '                                        <a href="song-details.html" class="text-dark custom-card--inline">\n' +
-                          '                                            <div class="custom-card--inline-img">\n' +
-                          '                                                <img src="'+element.cover+'" alt="'+element.name+'" class="card-img--radius-sm">\n' +
-                          '                                            </div>\n' +
-                          '\n' +
-                          '                                            <div class="custom-card--inline-desc">\n' +
-                          '                                                <p class="text-truncate mb-0">'+element.name+'</p>\n' +
-                          '                                            </div>\n' +
-                          '                                        </a>\n' +
-                          '                                    </div>\n' +
-                          '                                </div>')
-                  });
-
-                  console.log(result)
-              }
         });
-    })
+    });
+
 })
 
 

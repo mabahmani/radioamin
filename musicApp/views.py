@@ -79,6 +79,18 @@ def init_songs(request):
         return JsonResponse(songs_list, safe=False)
 
 
+def get_playlist_songs(request):
+    if request.is_ajax():
+        playlist_name = request.GET.get('playlist', None)
+        musics = Music.objects.filter(playlist__name=playlist_name).order_by('-pub_date')[:12]
+        songs_list = list()
+        for song in musics:
+            songJson = {'name': song.name, 'artist': song.singer.name, 'album': song.album.name, 'url': song.song.url,
+                        'cover_art_url': song.cover.url}
+            songs_list.append(songJson)
+        return JsonResponse(songs_list, safe=False)
+
+
 def search(request):
     data = {}
     artists = list()
