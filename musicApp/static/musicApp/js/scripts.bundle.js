@@ -565,7 +565,7 @@ $(function () {
         //=> Initialize audio player
         initAudioPlayer: function () {
             $.ajax({
-                url: "ajax/init_songs/",
+                url: "/ajax/init_songs/",
                 success: function (result) {
                     Amplitude.init({
                         "songs": result
@@ -602,14 +602,7 @@ $(function () {
 
         //=> Add audio in player on click of card
         addAudioInPlayer: function () {
-            var $audio = $('a[data-audio]');
-
-            $audio.on('click', function () {
-                var audioData = $(this).data('audio');
-                AudioPlayer.checkAudioAndAdd(audioData)
-            });
-
-            $('div').on('click', '.data-audio', function () {
+            $('body').on('click', '.data-audio', function () {
                 var audioData = $(this).data('audio');
                 AudioPlayer.checkAudioAndAdd(audioData)
             });
