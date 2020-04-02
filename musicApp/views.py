@@ -115,6 +115,18 @@ def get_singer_songs(request):
         return JsonResponse(songs_list, safe=False)
 
 
+def get_album_songs(request):
+    if request.is_ajax():
+        album_name = request.GET.get('album', None)
+        musics = Music.objects.filter(album__name=album_name).order_by('-pub_date')
+        songs_list = list()
+        for song in musics:
+            songJson = {'name': song.name, 'artist': song.singer.name, 'album': song.album.name, 'url': song.song.url,
+                        'cover_art_url': song.cover.url}
+            songs_list.append(songJson)
+        return JsonResponse(songs_list, safe=False)
+
+
 def search(request):
     data = {}
     artists = list()

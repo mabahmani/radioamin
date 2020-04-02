@@ -981,6 +981,80 @@ $(function () {
             }
         });
     })
+
+    $('body').on('click', '.play-all', function () {
+        let albumName = $('.album-name').text();
+        $.ajax({
+            url: "/ajax/get_album_songs/",
+            data: {album: albumName},
+            success: function (result) {
+                Amplitude.init({
+                    "songs": result
+                });
+
+                Amplitude.playSongAtIndex(0);
+
+                $(".list-group").empty();
+                $.each(result, function (index, element) {
+                    $(".list-group").append(
+                        '<li class="custom-list--item list-group-item">\n' +
+                        '                        <div class="text-dark custom-card--inline data-audio"  data-audio=\'{"name": "' + element.name + '", "artist": "' + element.artist + '", "album": "' + element.album + '", "url": "' + element.url + '", "cover_art_url": "' + element.cover_art_url + '"}\'>\n' +
+                        '                            <div class="custom-card--inline-img">\n' +
+                        '                                <img src="' + element.cover_art_url + '" alt="" class="card-img--radius-sm">\n' +
+                        '                            </div>\n' +
+                        '\n' +
+                        '                            <div class="custom-card--inline-desc">\n' +
+                        '                                <p class="text-truncate mb-0">' + element.name + '</p>\n' +
+                        '                                <p class="text-truncate text-muted font-sm">' + element.artist + '</p>\n' +
+                        '                            </div>\n' +
+                        '                        </div>\n' +
+                        '                        <ul class="custom-card--labels d-flex ml-auto">\n' +
+                        '                            <li class="dropleft">\n' +
+                        '                                <a href="javascript:void(0);" class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
+                        '                                    <i class="la la-ellipsis-h"></i>\n' +
+                        '                                </a>\n' +
+                        '                                <ul class="dropdown-menu">\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="javascript:void(0);" class="dropdown-link favorite">\n' +
+                        '                                            <i class="la la-heart-o"></i>\n' +
+                        '                                            <span>Favorite</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                        '                                            <i class="la la-plus"></i>\n' +
+                        '                                            <span>Add to Playlist</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                        '                                            <i class="la la-download"></i>\n' +
+                        '                                            <span>Download</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="javascript:void(0);" class="dropdown-link">\n' +
+                        '                                            <i class="la la-share-alt"></i>\n' +
+                        '                                            <span>Share</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                    <li class="dropdown-item">\n' +
+                        '                                        <a href="{% url \'musicApp:song_detail\' pk=music.pk %}" class="dropdown-link">\n' +
+                        '                                            <i class="la la-info-circle"></i>\n' +
+                        '                                            <span>Song Info</span>\n' +
+                        '                                        </a>\n' +
+                        '                                    </li>\n' +
+                        '                                </ul>\n' +
+                        '                            </li>\n' +
+                        '                        </ul>\n' +
+                        '                    </li>'
+                    )
+                });
+
+
+            }
+        });
+    })
 })
 
 
