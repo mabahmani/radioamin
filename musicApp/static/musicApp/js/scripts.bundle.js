@@ -760,12 +760,13 @@ $(function () {
 });
 
 $(function () {
-    $("#playlist-item a").on('click', function () {
+    $("body").on('click','#playlist-item a', function () {
         let playlistName = $(this).find('span').text();
         $.ajax({
             url: "/ajax/get_playlist_songs/",
             data: {playlist: playlistName},
             success: function (result) {
+                Amplitude.pause();
                 Amplitude.init({
                     "songs": result
                 });
@@ -834,12 +835,13 @@ $(function () {
         });
     });
 
-    $("#genre-item a").on('click', function () {
+    $("body").on('click','#genre-item a', function () {
         let genreName = $(this).find('span').text();
         $.ajax({
             url: "/ajax/get_genre_songs/",
             data: {genre: genreName},
             success: function (result) {
+                Amplitude.pause();
                 Amplitude.init({
                     "songs": result
                 });
@@ -914,6 +916,7 @@ $(function () {
             url: "/ajax/get_singer_songs/",
             data: {singer: singerName},
             success: function (result) {
+                Amplitude.pause();
                 Amplitude.init({
                     "songs": result
                 });
@@ -988,6 +991,7 @@ $(function () {
             url: "/ajax/get_album_songs/",
             data: {album: albumName},
             success: function (result) {
+                Amplitude.pause();
                 Amplitude.init({
                     "songs": result
                 });

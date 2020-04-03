@@ -430,12 +430,12 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <a href="javascript:void(0);" class="external" >
+                                <a href="{% url 'musicApp:album_detail' pk=album.pk %}" >
                                     <img src="{{album.cover.url}}" alt="{{album.name}}" class="card-img--radius-lg">
                                 </a>
                             </div>
 
-                            <a href="song-details.html" class="custom-card--link mt-2">
+                            <a href="{% url 'musicApp:album_detail' pk=album.pk %}" class="custom-card--link mt-2">
                                 <h6>{{album.name}}</h6>
                                 <p>{{album.singer.name}}</p>
                             </a>
