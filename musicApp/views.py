@@ -208,6 +208,10 @@ class ClassicListView(ListView):
     queryset = classic = Music.objects.filter(genre__name='Classic')
 
 
+class FreeMusicListView(ListView):
+    queryset = classic = Music.objects.filter(premium=False)
+
+
 class AlbumListView(ListView):
     model = Album
 

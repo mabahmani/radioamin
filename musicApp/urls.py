@@ -2,7 +2,8 @@ from django.urls import path
 
 from musicApp.views import HomePageView, search, ArtistDetailView, ArtistListView, EventDetailView, GenreListView, \
     SongDetailView, TopChartListView, NewReleaseListView, ClassicListView, AlbumListView, PlaylistListView, \
-    AlbumDetailView, init_songs, get_playlist_songs, get_genre_songs, get_singer_songs, get_album_songs
+    AlbumDetailView, init_songs, get_playlist_songs, get_genre_songs, get_singer_songs, get_album_songs, \
+    FreeMusicListView
 
 app_name = "musicApp"
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
     path('songs/new_release/', NewReleaseListView.as_view(), name='songs_new_release'),
     path('songs/classic/', ClassicListView.as_view(), name='songs_classic'),
     path('albums/', AlbumListView.as_view(), name='albums'),
+    path('songs/free', FreeMusicListView.as_view(), name='songs_free'),
     path('playlists/', PlaylistListView.as_view(), name='playlists'),
     path('ajax/search/', search, name='search'),
     path('ajax/init_songs/', init_songs, name='init_songs'),
