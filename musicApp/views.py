@@ -38,13 +38,6 @@ class HomePageView(TemplateView):
         except Genre.DoesNotExist:
             return classic
 
-    @staticmethod
-    def get_init_playlist(playlist_name):
-        if playlist_name == 'top_chart':
-            return Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
-        else:
-            return Music.objects.filter(playlist__name=playlist_name)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
@@ -61,10 +54,6 @@ class HomePageView(TemplateView):
         context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
         context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
         context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
-        if 'playlist_name' in self.kwargs:
-            context['current_playlist'] = self.get_init_playlist(self.kwargs['playlist_name'])
-        else:
-            context['current_playlist'] = self.get_init_playlist('top_chart')
         return context
 
 
