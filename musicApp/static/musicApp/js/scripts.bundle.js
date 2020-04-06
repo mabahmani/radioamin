@@ -605,6 +605,8 @@ $(function () {
             $('body').on('click', '.data-audio', function () {
                 var audioData = $(this).data('audio');
                 AudioPlayer.checkAudioAndAdd(audioData);
+                AudioPlayer.incrementPlays(audioData);
+                AudioPlayer.addToHistory(audioData);
             });
         },
 
@@ -676,8 +678,6 @@ $(function () {
                     '                        </ul>\n' +
                     '                    </li>'
                 )
-
-                AudioPlayer.incrementPlays(audioData);
             }
         },
 
@@ -685,12 +685,23 @@ $(function () {
             $.ajax({
                 url: "/ajax/increment_plays/",
                 data: {music_name: audioData.name, singer_name: audioData.artist},
-                success:function (result) {
+                success: function (result) {
+
+                }
+            })
+        },
+
+        addToHistory: function (audioData) {
+            $.ajax({
+                url: "/account/ajax/add_history/",
+                data: {music_name: audioData.name, singer_name: audioData.artist},
+                success: function (result) {
 
                 }
             })
         }
-    };
+    }
+    ;
 
     //=> Call class at document ready
     $(document).ready(AudioPlayer.init);
@@ -1085,8 +1096,7 @@ $(function () {
             success: function (result) {
                 if (result.status === "error") {
                     $('#user-email-exists-error').css('display', 'inline');
-                }
-                else {
+                } else {
                     location.reload();
                 }
                 submitBtn.prop('disabled', false);
@@ -1105,8 +1115,7 @@ $(function () {
             success: function (result) {
                 if (result.status === "error") {
                     $('#user-email-password-error').css('display', 'inline');
-                }
-                else {
+                } else {
                     location.reload();
                 }
                 submitBtn.prop('disabled', false);

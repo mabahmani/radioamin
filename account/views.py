@@ -6,6 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 from account.models import MusicAppAccount
+from musicApp.models import Music
 
 
 def sign_up(request):
@@ -53,3 +54,15 @@ def sign_in(request):
 def log_out(request):
     logout(request)
     return redirect('/')
+
+
+def add_history(request):
+    if request.is_ajax():
+        if request.user.is_authenticated:
+            musicAppUser = MusicAppAccount.objects.get(user__email=request.user.email)
+            music_name = request.GET.get('music_name', None)
+            singer_name = request.GET.get('singer_name', None)
+            music = Music.objects.get(name=music_name, singer__name=singer_name)
+            musicAppUser.history.add(music)
+            musicAppUser.save()
+        return JsonResponse({'msg: success'}, safe=False)

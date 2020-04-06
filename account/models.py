@@ -32,8 +32,7 @@ class MusicAppAccount(models.Model):
     setting_get_email = models.BooleanField(default=True)
     setting_get_sms = models.BooleanField(default=False)
     setting_normalize_volume = models.BooleanField(default=True)
-    setting_stream_quality = models.PositiveIntegerField(choices=stream_quality_choices,default=320)
+    setting_stream_quality = models.PositiveIntegerField(choices=stream_quality_choices, default=320)
     setting_theme_night_mode = models.BooleanField(default=False)
-    favorite = models.ForeignKey('musicApp.Music', on_delete=models.CASCADE, blank=True, null=True)
-    history = models.ForeignKey('musicApp.Music', on_delete=models.CASCADE, related_name='user_history',
-                                blank=True, null=True)
+    favorite = models.ManyToManyField('musicApp.Music', blank=True)
+    history = models.ManyToManyField('musicApp.Music', related_name='user_history', blank=True)
