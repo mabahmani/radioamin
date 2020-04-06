@@ -108,10 +108,10 @@
                 {#                    <a href="analytics.html" class="nav-link"><i class="la la-bar-chart"></i><span>Analytics</span></a>#}
                 {#                </li>#}
                 <li class="nav-item">
-                    <a href="favorites.html" class="nav-link"><i class="la la-heart-o"></i><span>Favorites</span></a>
+                    <a href="{% url 'musicApp:favorites' %}" class="nav-link"><i class="la la-heart-o"></i><span>Favorites</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="history.html" class="nav-link"><i class="la la-history"></i><span>History</span></a>
+                    <a href="{% url 'musicApp:history' %}" class="nav-link"><i class="la la-history"></i><span>History</span></a>
                 </li>
                 {#                <li class="nav-item nav-header">Music Events</li>#}
                 {#                <li class="nav-item">#}

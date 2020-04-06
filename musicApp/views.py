@@ -210,11 +210,11 @@ class NewReleaseListView(ListView):
 
 
 class ClassicListView(ListView):
-    queryset = classic = Music.objects.filter(genre__name='Classic')
+    queryset = Music.objects.filter(genre__name='Classic')
 
 
 class FreeMusicListView(ListView):
-    queryset = classic = Music.objects.filter(premium=False)
+    queryset = Music.objects.filter(premium=False)
 
 
 class AlbumListView(ListView):
@@ -223,3 +223,18 @@ class AlbumListView(ListView):
 
 class PlaylistListView(ListView):
     model = Playlist
+
+
+class HistoryListView(ListView):
+
+    def get_queryset(self):
+        musicAppUser = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        return musicAppUser.history.all()
+
+
+class FavoriteListView(ListView):
+
+    def get_queryset(self):
+        musicAppUser = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        return musicAppUser.favorite.all()
+
