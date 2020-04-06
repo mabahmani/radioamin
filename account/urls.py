@@ -1,6 +1,6 @@
 from django.urls import path
 
-from account.views import sign_up, sign_in, log_out, add_history
+from account.views import sign_up, sign_in, log_out, add_history, add_favorite
 
 app_name = "account"
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('login/', sign_in, name='sign_in'),
     path('logout/', log_out, name='log_out'),
     path('ajax/add_history/', add_history, name='add_history'),
+    path('ajax/add_favorite/', add_favorite, name='add_favorite'),
 ]

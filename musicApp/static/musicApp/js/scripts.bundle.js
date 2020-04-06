@@ -514,9 +514,15 @@ $(function () {
                 var $this = $(this);
                 var info = $this.closest('.custom-card--info');
                 var labels = info.find('.custom-card--labels');
-
+                var audioData = $(this).closest('.custom-card').find('.data-audio').data('audio');
                 if (labels.length && !info.find('.custom-card--labels li .la-heart').length) {
-                    labels.append(heart);
+                    $.ajax({
+                        url: "/account/ajax/add_favorite/",
+                        data: {music_name: audioData.name, singer_name: audioData.artist},
+                        success: function (result) {
+                            labels.append(heart);
+                        }
+                    })
                 } else {
                     var $labels = '<ul class="custom-card--labels d-flex">' +
                         heart +

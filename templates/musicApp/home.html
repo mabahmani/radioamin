@@ -342,7 +342,14 @@
                                 <div class="custom-card--info">
                                     <ul class="custom-card--labels d-flex">
                                         {% if music.premium %}
-                                            <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span>
+                                            <li>
+                                                <span class="badge badge-pill badge-warning"><i class="la la-star"></i></span>
+                                            </li>
+                                        {% endif %}
+
+                                        {% if music in favorites %}
+                                            <li>
+                                                <span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span>
                                             </li>
                                         {% endif %}
                                     </ul>
@@ -481,6 +488,11 @@
                                                 <li><span class="badge badge-pill badge-warning"><i
                                                         class="la la-star"></i></span></li>
                                             {% endif %}
+                                                                                {% if music in favorites %}
+                                            <li>
+                                                <span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span>
+                                            </li>
+                                        {% endif %}
                                             <li class="dropleft">
                                                 <a href="javascript:void(0);"
                                                    class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown"
@@ -551,6 +563,11 @@
                                                 <li><span class="badge badge-pill badge-warning"><i
                                                         class="la la-star"></i></span></li>
                                             {% endif %}
+                                                                                {% if music in favorites %}
+                                            <li>
+                                                <span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span>
+                                            </li>
+                                        {% endif %}
                                             <li class="dropleft">
                                                 <a href="javascript:void(0);"
                                                    class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown"
@@ -621,6 +638,11 @@
                                                 <li><span class="badge badge-pill badge-warning"><i
                                                         class="la la-star"></i></span></li>
                                             {% endif %}
+                                                                                {% if music in favorites %}
+                                            <li>
+                                                <span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span>
+                                            </li>
+                                        {% endif %}
                                             <li class="dropleft">
                                                 <a href="javascript:void(0);"
                                                    class="btn btn-icon-only p-0 w-auto h-auto" data-toggle="dropdown"
@@ -699,7 +721,13 @@
                                         {% if music.premium %}
                                             <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span>
                                             </li>
-                                        {% endif %}                                    </ul>
+                                        {% endif %}
+                                                                            {% if music in favorites %}
+                                            <li>
+                                                <span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
                                     <div class="dropdown dropdown-icon">
                                         <a href="javascript:void(0);" role="button" data-toggle="dropdown"
                                            aria-haspopup="true" aria-expanded="false">
@@ -839,7 +867,12 @@
                                         {% if music.premium %}
                                             <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span>
                                             </li>
-                                        {% endif %}                                    </ul>
+                                        {% endif %}
+                                                                            {% if music in favorites %}
+                                            <li>
+                                                <span class="badge badge-pill badge-danger"><i class="la la-heart"></i></span>
+                                            </li>
+                                        {% endif %}</ul>
                                     <div class="dropdown dropdown-icon">
                                         <a href="javascript:void(0);" role="button" data-toggle="dropdown"
                                            aria-haspopup="true" aria-expanded="false">

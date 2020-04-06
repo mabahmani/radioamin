@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, ListView
 
+from account.models import MusicAppAccount
 from musicApp.models import Music, Event, MusicPlay, Singer, Playlist, Genre, Album
 
 
@@ -54,6 +55,11 @@ class HomePageView(TemplateView):
         context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
         context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
         context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+
+        if self.request.user.is_authenticated:
+            musicAppUser = MusicAppAccount.objects.get(user__email=self.request.user.email)
+            context['favorites'] = musicAppUser.favorite.all()
+
         return context
 
 
