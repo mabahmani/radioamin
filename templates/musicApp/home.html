@@ -279,7 +279,7 @@
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="avatar avatar-sm avatar-circle"><img
                                         src={% static "musicApp/images/users/thumb.jpg" %} alt="user"></div>
-                                <span class="pl-2">Halo Admin</span>
+                                <span class="pl-2">{{user.email}}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
                                 <a class="dropdown-item" href="profile.html"><i class="ion-md-contact"></i>
@@ -289,7 +289,7 @@
                                     <span>Settings</span></a>
                                 <div class="dropdown-divider"></div>
                                 <div class="px-4 py-2">
-                                    <a href="#" class="btn btn-sm btn-air btn-pill btn-danger">Logout</a>
+                                    <a href="{% url 'account:log_out' %}" class="btn btn-sm btn-air btn-pill btn-danger external">Logout</a>
                                 </div>
                             </div>
                         </li>

@@ -1,9 +1,9 @@
 import json
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from account.models import MusicAppAccount
 
@@ -49,3 +49,7 @@ def sign_in(request):
             response['msg'] = 'username or password is incorrect.'
             return JsonResponse(response, safe=False)
 
+
+def log_out(request):
+    logout(request)
+    return redirect('/')
