@@ -150,6 +150,16 @@ def search(request):
     return JsonResponse(data, safe=False)
 
 
+def increment_music_play(request):
+    if request.is_ajax():
+        music_name = request.GET.get('music_name', None)
+        singer_name = request.GET.get('singer_name', None)
+        music = Music.objects.get(name=music_name, singer__name=singer_name)
+        music.plays += 1
+        music.save()
+        return JsonResponse({'msg': 'success'}, safe=False)
+
+
 class ArtistDetailView(DetailView):
     model = Singer
 

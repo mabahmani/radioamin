@@ -604,7 +604,7 @@ $(function () {
         addAudioInPlayer: function () {
             $('body').on('click', '.data-audio', function () {
                 var audioData = $(this).data('audio');
-                AudioPlayer.checkAudioAndAdd(audioData)
+                AudioPlayer.checkAudioAndAdd(audioData);
             });
         },
 
@@ -676,7 +676,19 @@ $(function () {
                     '                        </ul>\n' +
                     '                    </li>'
                 )
+
+                AudioPlayer.incrementPlays(audioData);
             }
+        },
+
+        incrementPlays: function (audioData) {
+            $.ajax({
+                url: "/ajax/increment_plays/",
+                data: {music_name: audioData.name, singer_name: audioData.artist},
+                success:function (result) {
+
+                }
+            })
         }
     };
 
