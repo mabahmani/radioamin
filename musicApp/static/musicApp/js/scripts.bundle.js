@@ -1064,289 +1064,316 @@ $(function () {
 $(function () {
     $('#signupForm').submit(function (e) {
         e.preventDefault();
-        console.log('signupForm')
+        var submitBtn = $(this).find('input[type=submit]');
+        submitBtn.prop('disabled', true);
         $.ajax({
             url: "/account/register/", // the file to call
             type: "POST", // GET or POST
             data: $(this).serialize(), // get the form data
-            success: function (data) {
-                console.log(data)
+            success: function (result) {
+                if (result.status === "error") {
+                    $('#user-email-exists-error').css('display', 'inline');
+                }
+                else {
+                    location.reload();
+                }
+                submitBtn.prop('disabled', false);
+            }
+        })
+    })
+
+    $('#signInForm').submit(function (e) {
+        e.preventDefault();
+        var submitBtn = $(this).find('input[type=submit]');
+        submitBtn.prop('disabled', true);
+        $.ajax({
+            url: "/account/login/", // the file to call
+            type: "POST", // GET or POST
+            data: $(this).serialize(), // get the form data
+            success: function (result) {
+                if (result.status === "error") {
+                    $('#user-email-password-error').css('display', 'inline');
+                }
+                else {
+                    location.reload();
+                }
+                submitBtn.prop('disabled', false);
             }
         })
     })
 })
 
-        /**
-         * Theme Settings v1.0.0
-         * Copyright 2019 Kri8thm
-         * Licensed under MIT
-         *------------------------------------*/
+/**
+ * Theme Settings v1.0.0
+ * Copyright 2019 Kri8thm
+ * Licensed under MIT
+ *------------------------------------*/
 
-        ;(function ($, window, document, undefined) {
-            function Theme(element, options) {
-                this.$body = $('body');
+;(function ($, window, document, undefined) {
+    function Theme(element, options) {
+        this.$body = $('body');
 
-                /*
-                 * Theme settings options
-                 */
-                this.options = $.extend({}, Theme.Defaults, options);
+        /*
+         * Theme settings options
+         */
+        this.options = $.extend({}, Theme.Defaults, options);
 
-                /*
-                 * Options to store in cookies
-                 */
-                this.cookiesOptions = {
-                    'themeDark': this.options.darkTheme,
-                    'header': this.options.header,
-                    'sidebar': this.options.sidebar,
-                    'player': this.options.player
-                };
+        /*
+         * Options to store in cookies
+         */
+        this.cookiesOptions = {
+            'themeDark': this.options.darkTheme,
+            'header': this.options.header,
+            'sidebar': this.options.sidebar,
+            'player': this.options.player
+        };
 
-                /*
-                 * Get cookies of app and set on options
-                 */
-                if ($.cookie('themeSetting') != null && options === false) {
-                    this.cookiesOptions = JSON.parse($.cookie('themeSetting'));
-                    this.options.darkTheme = this.cookiesOptions.themeDark;
-                    this.options.header = this.cookiesOptions.header;
-                    this.options.sidebar = this.cookiesOptions.sidebar;
-                    this.options.player = this.cookiesOptions.player;
-                }
+        /*
+         * Get cookies of app and set on options
+         */
+        if ($.cookie('themeSetting') != null && options === false) {
+            this.cookiesOptions = JSON.parse($.cookie('themeSetting'));
+            this.options.darkTheme = this.cookiesOptions.themeDark;
+            this.options.header = this.cookiesOptions.header;
+            this.options.sidebar = this.cookiesOptions.sidebar;
+            this.options.player = this.cookiesOptions.player;
+        }
 
-                /*
-                 * Count for checkbox
-                 */
-                this.optionList = [
-                    {
-                        'text': 'Dark Theme',
-                        'value': this.options.darkTheme
-                    }
-                ];
-
-                var pageName = window.location.pathname.split('/').pop().split('.')[0];
-                var pages = ['index', 'error'];
-                var isSettingNotVisible = pages.includes(pageName);
-                if (!isSettingNotVisible) {
-                    this.initialize();
-                }
+        /*
+         * Count for checkbox
+         */
+        this.optionList = [
+            {
+                'text': 'Dark Theme',
+                'value': this.options.darkTheme
             }
+        ];
 
-            /**
-             * Default options for the theme.
-             * @public
-             */
-            Theme.Defaults = {
-                darkTheme: false,
+        var pageName = window.location.pathname.split('/').pop().split('.')[0];
+        var pages = ['index', 'error'];
+        var isSettingNotVisible = pages.includes(pageName);
+        if (!isSettingNotVisible) {
+            this.initialize();
+        }
+    }
 
-                header: 0,
-                sidebar: 0,
-                player: 0,
-                themeClass: ['primary', 'danger', 'success', 'warning', 'info', 'brand', 'dark'],
+    /**
+     * Default options for the theme.
+     * @public
+     */
+    Theme.Defaults = {
+        darkTheme: false,
 
-                settingsButton: 'button',
-                settingsButtonId: 'customSettings',
-                settingsButtonClass: 'btn btn-pill btn-air btn-brand btn-icon-only',
-                settingIcon: '<i class="ion-md-settings"></i>',
+        header: 0,
+        sidebar: 0,
+        player: 0,
+        themeClass: ['primary', 'danger', 'success', 'warning', 'info', 'brand', 'dark'],
 
-                itemElement: 'div',
-                wrapperId: 'settingsWrapper',
+        settingsButton: 'button',
+        settingsButtonId: 'customSettings',
+        settingsButtonClass: 'btn btn-pill btn-air btn-brand btn-icon-only',
+        settingIcon: '<i class="ion-md-settings"></i>',
 
-                listClass: 'custom-list',
-                listItemClass: 'custom-list--item'
-            };
+        itemElement: 'div',
+        wrapperId: 'settingsWrapper',
 
-            /**
-             * Initializes the theme settings.
-             * @protected
-             */
-            Theme.prototype.initialize = function () {
-                var $header = $('#header');
-                var $sidebar = $('#sidebar');
-                var $player = $('#audioPlayer');
+        listClass: 'custom-list',
+        listItemClass: 'custom-list--item'
+    };
 
-                if (this.options.darkTheme) {
-                    this.$body.addClass('theme-dark');
-                }
-                $header.addClass('bg-' + this.options.themeClass[this.options.header]);
-                $sidebar.addClass('sidebar-' + this.options.themeClass[this.options.sidebar]);
-                $player.addClass('player-' + this.options.themeClass[this.options.player]);
-                this.settingsButtonElement();
-                this.skinClicks();
-            };
+    /**
+     * Initializes the theme settings.
+     * @protected
+     */
+    Theme.prototype.initialize = function () {
+        var $header = $('#header');
+        var $sidebar = $('#sidebar');
+        var $player = $('#audioPlayer');
 
-            /**
-             * Add theme settings button.
-             * @protected
-             */
-            Theme.prototype.settingsButtonElement = function () {
-                var attributes = {
-                    'type': 'button',
-                    'id': this.options.settingsButtonId,
-                    'className': this.options.settingsButtonClass
-                };
+        if (this.options.darkTheme) {
+            this.$body.addClass('theme-dark');
+        }
+        $header.addClass('bg-' + this.options.themeClass[this.options.header]);
+        $sidebar.addClass('sidebar-' + this.options.themeClass[this.options.sidebar]);
+        $player.addClass('player-' + this.options.themeClass[this.options.player]);
+        this.settingsButtonElement();
+        this.skinClicks();
+    };
 
-                var btnElement = document.createElement(this.options.settingsButton);
-                Object.assign(btnElement, attributes);
-                btnElement.innerHTML = this.options.settingIcon;
-                this.$body.append(btnElement);
-                this.themeOptions();
-            };
+    /**
+     * Add theme settings button.
+     * @protected
+     */
+    Theme.prototype.settingsButtonElement = function () {
+        var attributes = {
+            'type': 'button',
+            'id': this.options.settingsButtonId,
+            'className': this.options.settingsButtonClass
+        };
 
-            /**
-             * Add theme settings options.
-             * @protected
-             */
-            Theme.prototype.themeOptions = function () {
-                var wrapperElement = document.createElement(this.options.itemElement);
-                wrapperElement.setAttribute('id', this.options.wrapperId);
+        var btnElement = document.createElement(this.options.settingsButton);
+        Object.assign(btnElement, attributes);
+        btnElement.innerHTML = this.options.settingIcon;
+        this.$body.append(btnElement);
+        this.themeOptions();
+    };
 
-                var header = '<header>' +
-                    '<span class="title-bold font-md text-uppercase">Theme Settings</span>' +
-                    '<a href="javascript:void(0)" class="ml-auto"><i class="ion-md-close"></i></a>' +
-                    '</header>';
+    /**
+     * Add theme settings options.
+     * @protected
+     */
+    Theme.prototype.themeOptions = function () {
+        var wrapperElement = document.createElement(this.options.itemElement);
+        wrapperElement.setAttribute('id', this.options.wrapperId);
 
-                var body = '<div class="theme-settings-body"><ul class="' + this.options.listClass + '">';
+        var header = '<header>' +
+            '<span class="title-bold font-md text-uppercase">Theme Settings</span>' +
+            '<a href="javascript:void(0)" class="ml-auto"><i class="ion-md-close"></i></a>' +
+            '</header>';
 
-                for (var i = 0; i < this.optionList.length; i++) {
-                    var checked = this.optionList[i].value ? 'checked' : '';
+        var body = '<div class="theme-settings-body"><ul class="' + this.options.listClass + '">';
 
-                    body += '<li class="' + this.options.listItemClass + '">' +
-                        '<label for="to' + i + '">' + this.optionList[i].text + '</label>' +
-                        '<div class="custom-control custom-checkbox ml-auto">' +
-                        '<input type="checkbox" class="custom-control-input" id="to' + i + '" ' + checked + '>' +
-                        '<label class="custom-control-label" for="to' + i + '"></label>' +
-                        '</div>' +
-                        '</li>';
-                }
+        for (var i = 0; i < this.optionList.length; i++) {
+            var checked = this.optionList[i].value ? 'checked' : '';
 
-                body += '<li class="custom-list-group--item-separator"></li>' +
-                    '<li class="custom-list-group--item custom-list-group--item-header">Header Colors</li>' +
-                    '<li class="' + this.options.listItemClass + '">';
+            body += '<li class="' + this.options.listItemClass + '">' +
+                '<label for="to' + i + '">' + this.optionList[i].text + '</label>' +
+                '<div class="custom-control custom-checkbox ml-auto">' +
+                '<input type="checkbox" class="custom-control-input" id="to' + i + '" ' + checked + '>' +
+                '<label class="custom-control-label" for="to' + i + '"></label>' +
+                '</div>' +
+                '</li>';
+        }
 
-                for (var j = 0; j < this.options.themeClass.length; j++) {
-                    var activeClass = j === this.options.header ? 'active' : '';
-                    body += '<a href="javascript:void(0);" class="header-skin bg-' + this.options.themeClass[j] + ' ' + activeClass + '" ' +
-                        'data-header-skin="' + j + '"></a>';
-                }
+        body += '<li class="custom-list-group--item-separator"></li>' +
+            '<li class="custom-list-group--item custom-list-group--item-header">Header Colors</li>' +
+            '<li class="' + this.options.listItemClass + '">';
 
-                body += '</li>';
+        for (var j = 0; j < this.options.themeClass.length; j++) {
+            var activeClass = j === this.options.header ? 'active' : '';
+            body += '<a href="javascript:void(0);" class="header-skin bg-' + this.options.themeClass[j] + ' ' + activeClass + '" ' +
+                'data-header-skin="' + j + '"></a>';
+        }
 
-                body += '<li class="custom-list-group--item-separator"></li>' +
-                    '<li class="custom-list-group--item custom-list-group--item-header">Sidebar Colors</li>' +
-                    '<li class="' + this.options.listItemClass + '">';
+        body += '</li>';
 
-                for (var k = 0; k < this.options.themeClass.length; k++) {
-                    var activeClassSidebar = k === this.options.sidebar ? 'active' : '';
-                    body += '<a href="javascript:void(0);" class="sidebar-skin bg-' + this.options.themeClass[k] + ' ' + activeClassSidebar + '" ' +
-                        'data-sidebar-skin="' + k + '"></a>';
-                }
+        body += '<li class="custom-list-group--item-separator"></li>' +
+            '<li class="custom-list-group--item custom-list-group--item-header">Sidebar Colors</li>' +
+            '<li class="' + this.options.listItemClass + '">';
 
-                body += '</li>';
+        for (var k = 0; k < this.options.themeClass.length; k++) {
+            var activeClassSidebar = k === this.options.sidebar ? 'active' : '';
+            body += '<a href="javascript:void(0);" class="sidebar-skin bg-' + this.options.themeClass[k] + ' ' + activeClassSidebar + '" ' +
+                'data-sidebar-skin="' + k + '"></a>';
+        }
 
-                body += '<li class="custom-list-group--item-separator"></li>' +
-                    '<li class="custom-list-group--item custom-list-group--item-header">Player Colors</li>' +
-                    '<li class="' + this.options.listItemClass + '">';
+        body += '</li>';
 
-                for (var m = 0; m < this.options.themeClass.length; m++) {
-                    var activeClassPlayer = m === this.options.player ? 'active' : '';
-                    body += '<a href="javascript:void(0);" class="player-skin bg-' + this.options.themeClass[m] + ' ' + activeClassPlayer + '" ' +
-                        'data-player-skin="' + m + '"></a>';
-                }
+        body += '<li class="custom-list-group--item-separator"></li>' +
+            '<li class="custom-list-group--item custom-list-group--item-header">Player Colors</li>' +
+            '<li class="' + this.options.listItemClass + '">';
 
-                body += '</li>';
+        for (var m = 0; m < this.options.themeClass.length; m++) {
+            var activeClassPlayer = m === this.options.player ? 'active' : '';
+            body += '<a href="javascript:void(0);" class="player-skin bg-' + this.options.themeClass[m] + ' ' + activeClassPlayer + '" ' +
+                'data-player-skin="' + m + '"></a>';
+        }
 
-                body += '</ul></div>';
+        body += '</li>';
 
-                wrapperElement.innerHTML = header + body;
-                this.$body.append(wrapperElement);
-            };
+        body += '</ul></div>';
 
-            /**
-             * App click events.
-             * @protected
-             */
-            Theme.prototype.skinClicks = function () {
-                var _this = this;
-                var settings = '#' + _this.options.settingsButtonId;
-                var $wrapper = $('#' + _this.options.wrapperId);
-                var $header = $('#header');
-                var $sidebar = $('#sidebar');
-                var $player = $('#audioPlayer');
-                var $headerSkin = $('.header-skin');
-                var $sidebarSkin = $('.sidebar-skin');
-                var $playerSkin = $('.player-skin');
+        wrapperElement.innerHTML = header + body;
+        this.$body.append(wrapperElement);
+    };
 
-                this.$body.on('click', '#to0', function () {
-                    var $this = $(this);
-                    _this.cookiesOptions.themeDark = $this[0].checked;
-                    _this.$body.toggleClass('theme-dark');
-                    _this.setCookies();
-                });
+    /**
+     * App click events.
+     * @protected
+     */
+    Theme.prototype.skinClicks = function () {
+        var _this = this;
+        var settings = '#' + _this.options.settingsButtonId;
+        var $wrapper = $('#' + _this.options.wrapperId);
+        var $header = $('#header');
+        var $sidebar = $('#sidebar');
+        var $player = $('#audioPlayer');
+        var $headerSkin = $('.header-skin');
+        var $sidebarSkin = $('.sidebar-skin');
+        var $playerSkin = $('.player-skin');
 
-                this.$body.on('click', '.header-skin', function () {
-                    var $this = $(this);
-                    var headerSkin = $this.data('header-skin');
-                    _this.cookiesOptions.header = headerSkin;
-                    $header.removeClass();
-                    $header.addClass('bg-' + _this.options.themeClass[headerSkin]);
-                    $headerSkin.removeClass('active');
-                    $this.addClass('active');
-                    _this.setCookies();
-                });
+        this.$body.on('click', '#to0', function () {
+            var $this = $(this);
+            _this.cookiesOptions.themeDark = $this[0].checked;
+            _this.$body.toggleClass('theme-dark');
+            _this.setCookies();
+        });
 
-                this.$body.on('click', '.sidebar-skin', function () {
-                    var $this = $(this);
-                    var sidebarSkin = $this.data('sidebar-skin');
-                    _this.cookiesOptions.sidebar = sidebarSkin;
-                    $sidebar.removeClass();
-                    $sidebar.addClass('sidebar-' + _this.options.themeClass[sidebarSkin]);
-                    $sidebarSkin.removeClass('active');
-                    $this.addClass('active');
-                    _this.setCookies();
-                });
+        this.$body.on('click', '.header-skin', function () {
+            var $this = $(this);
+            var headerSkin = $this.data('header-skin');
+            _this.cookiesOptions.header = headerSkin;
+            $header.removeClass();
+            $header.addClass('bg-' + _this.options.themeClass[headerSkin]);
+            $headerSkin.removeClass('active');
+            $this.addClass('active');
+            _this.setCookies();
+        });
 
-                this.$body.on('click', '.player-skin', function () {
-                    var $this = $(this);
-                    var playerSkin = $this.data('player-skin');
-                    _this.cookiesOptions.player = playerSkin;
-                    $player.removeClass();
-                    $player.addClass('player-' + _this.options.themeClass[playerSkin]);
-                    $playerSkin.removeClass('active');
-                    $this.addClass('active');
-                    _this.setCookies();
-                });
+        this.$body.on('click', '.sidebar-skin', function () {
+            var $this = $(this);
+            var sidebarSkin = $this.data('sidebar-skin');
+            _this.cookiesOptions.sidebar = sidebarSkin;
+            $sidebar.removeClass();
+            $sidebar.addClass('sidebar-' + _this.options.themeClass[sidebarSkin]);
+            $sidebarSkin.removeClass('active');
+            $this.addClass('active');
+            _this.setCookies();
+        });
 
-                this.$body.on('click', settings, function () {
-                    $wrapper.toggleClass('open-settings');
-                });
+        this.$body.on('click', '.player-skin', function () {
+            var $this = $(this);
+            var playerSkin = $this.data('player-skin');
+            _this.cookiesOptions.player = playerSkin;
+            $player.removeClass();
+            $player.addClass('player-' + _this.options.themeClass[playerSkin]);
+            $playerSkin.removeClass('active');
+            $this.addClass('active');
+            _this.setCookies();
+        });
 
-                this.$body.on('click', 'header a', function () {
-                    $wrapper.removeClass('open-settings');
-                });
-            };
+        this.$body.on('click', settings, function () {
+            $wrapper.toggleClass('open-settings');
+        });
 
-            /**
-             * Set app cookies.
-             * @protected
-             */
-            Theme.prototype.setCookies = function () {
-                $.cookie('themeSetting', JSON.stringify(this.cookiesOptions), {expires: 7, path: '/'});
-            };
+        this.$body.on('click', 'header a', function () {
+            $wrapper.removeClass('open-settings');
+        });
+    };
 
-            /**
-             * The jQuery Plugin for the Theme Setting
-             * @public
-             */
-            $.fn.themeSettings = function (option) {
-                return this.each(function () {
-                    var $this = $(this);
-                    var data = new Theme(this, typeof option === 'object' && option);
-                });
-            };
+    /**
+     * Set app cookies.
+     * @protected
+     */
+    Theme.prototype.setCookies = function () {
+        $.cookie('themeSetting', JSON.stringify(this.cookiesOptions), {expires: 7, path: '/'});
+    };
 
-            /**
-             * The constructor for the jQuery Plugin
-             * @public
-             */
-            $.fn.themeSettings.Constructor = Theme;
+    /**
+     * The jQuery Plugin for the Theme Setting
+     * @public
+     */
+    $.fn.themeSettings = function (option) {
+        return this.each(function () {
+            var $this = $(this);
+            var data = new Theme(this, typeof option === 'object' && option);
+        });
+    };
 
-        })(jQuery, window, document);
+    /**
+     * The constructor for the jQuery Plugin
+     * @public
+     */
+    $.fn.themeSettings.Constructor = Theme;
+
+})(jQuery, window, document);

@@ -301,7 +301,7 @@
                         </li>
                         <li>
                             <a href="#" class="align-items-center btn btn-pill btn-air btn-sm btn-danger"
-                               data-toggle="modal" data-target="#signIn">Sign up</a>
+                               data-toggle="modal" data-target="#signUp">Sign up</a>
                         </li>
                     {% endif %}
 
@@ -1151,9 +1151,8 @@
 </div>
 <!-- End | Wrapper -->
 
-
-<!-- Begin | Login Modal -->
-<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+<!-- Begin | Sign Up Modal -->
+<div class="modal fade" id="signUp" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header border-bottom-0 pb-0">
@@ -1163,7 +1162,7 @@
             </div>
             <h6 class="modal-title text-center mb-3" id="loginTitle">Login For Awesome Listing Experience</h6>
             <div class="modal-body">
-                <form  id="signupForm" class="mx-4 pb-5">
+                <form id="signupForm" class="mx-4 pb-5">
                     {% csrf_token %}
                     <div class="social-login">
                         <a href="javascript:void(0);" class="w-100 btn btn-social btn-facebook btn-default-air">
@@ -1180,10 +1179,55 @@
                         </a>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="email" class="form-control" placeholder="Email or mobile number" value="listen_app@kri8thm.com">
+                        <input type="text" name="email" class="form-control" placeholder="Email or mobile number">
+                        <p class="text-danger text-center" id="user-email-exists-error"
+                           style="display:none;">Email already registered.</p>
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="Password" value="123456789">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                    <input type="submit" value="Sign Up" class="btn btn-block btn-bold btn-air btn-info load-page">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End | Sign Up Modal -->
+
+<!-- Begin | Login Modal -->
+<div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0 pb-0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h6 class="modal-title text-center mb-3" id="loginTitle">Login For Awesome Listing Experience</h6>
+            <div class="modal-body">
+                <form id="signInForm" class="mx-4 pb-5">
+                    {% csrf_token %}
+                    <div class="social-login">
+                        <a href="javascript:void(0);" class="w-100 btn btn-social btn-facebook btn-default-air">
+                            <span class="btn-content">
+                                <i class="ion-logo-facebook"></i>
+                                <span class="pl-2">Login With Facebook</span>
+                            </span>
+                        </a>
+                        <a href="javascript:void(0);" class="w-100 mt-3 btn btn-social btn-google btn-default-air">
+                            <span class="btn-content">
+                                <i class="ion-logo-google"></i>
+                                <span class="pl-2">Login With Google</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email" class="form-control" placeholder="Email or mobile number">
+                        <p class="text-danger text-center" id="user-email-password-error"
+                           style="display:none;">Email or Password is Incorrect.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password">
                     </div>
                     <input type="submit" value="login" class="btn btn-block btn-bold btn-air btn-info load-page">
                 </form>
