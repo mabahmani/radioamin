@@ -102,6 +102,7 @@
                     <a href="{% url 'musicApp:albums' %}" class="nav-link"><i
                             class="la la-bullseye"></i><span>Albums</span></a>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item nav-header">Your Music</li>
                 {#                <li class="nav-item">#}
                 {#                    <a href="analytics.html" class="nav-link"><i class="la la-bar-chart"></i><span>Analytics</span></a>#}
@@ -132,6 +133,7 @@
                 {#                <li class="nav-item">#}
                 {#                    <a href="blank.html" class="nav-link"><i class="la la-file"></i><span>Blank</span></a>#}
                 {#                </li>#}
+                {% endif %}
             </ul>
         </nav>
         <!-- End | Navbar -->
