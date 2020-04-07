@@ -239,10 +239,14 @@ class FavoriteListView(ListView):
         return musicAppUser.favorite.all()
 
 
-class SettingDetailView(TemplateView):
+class SettingTemplateView(TemplateView):
     template_name = "musicApp/setting.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
         return context
+
+
+class PlanTemplateView(TemplateView):
+    template_name = "musicApp/plan.html"

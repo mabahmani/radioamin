@@ -1,3 +1,5 @@
+{%  load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +24,8 @@
     <link rel="apple-touch-icon" sizes="167x167" href="../assets/images/logos/touch-icon-ipad-retina.png">
 
     <!-- Styles -->
-    <link href="../assets/css/vendors.bundle.css" rel="stylesheet" type="text/css"/>
-    <link href="../assets/css/styles.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href={% static "musicApp/css/vendors.bundle.css" %} rel="stylesheet" type="text/css"/>
+    <link href={% static "musicApp/css/styles.bundle.css" %} rel="stylesheet" type="text/css"/>
 
     <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -61,7 +63,7 @@
         <!-- Begin | Sidebar Header -->
         <div class="sidebar-header d-flex align-items-center">
             <a href="../index.html" class="brand">
-                <img src="../assets/images/logos/logo.svg" alt="listen-app">
+                <img src={% static "musicApp/images/logos/logo.svg" %} alt="listen-app">
             </a>
 
             <button type="button" class="btn p-0 ml-auto" id="hideSidebar">
@@ -350,7 +352,7 @@
                     </li>
                     <li class="dropdown fade-in">
                         <a href="javascript:void(0);" class="d-flex align-items-center py-2" role="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="avatar avatar-sm avatar-circle"><img src="../assets/images/users/thumb.jpg" alt="user"></div>
+                            <div class="avatar avatar-sm avatar-circle"><img src={% static "musicApp/images/users/thumb.jpg" %} alt="user"></div>
                             <span class="pl-2">Halo Admin</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
@@ -1053,7 +1055,7 @@
 <div class="backdrop sidebar-backdrop"></div>
 
 <!-- Scripts -->
-<script src="../assets/js/vendors.bundle.js"></script>
-<script src="../assets/js/scripts.bundle.js"></script>
+<script src={% static "musicApp/js/vendors.bundle.js" %}></script>
+<script src={% static "musicApp/js/scripts.bundle.js" %}></script>
 </body>
 </html>
