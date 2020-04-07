@@ -22,10 +22,10 @@ class MusicAppAccount(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.PROTECT)
-    display_name = models.CharField(max_length=25)
-    location = models.CharField(max_length=25)
-    about = models.TextField()
-    avatar = models.ImageField(upload_to=user_directory_path)
+    display_name = models.CharField(max_length=25, blank=True)
+    location = models.CharField(max_length=25, blank=True)
+    about = models.TextField(blank=True)
+    avatar = models.ImageField(upload_to=user_directory_path,blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     plan = models.PositiveIntegerField(choices=plan_choices, default=1)
     plan_expire = models.DateTimeField(blank=True, null=True)
@@ -36,3 +36,6 @@ class MusicAppAccount(models.Model):
     setting_theme_night_mode = models.BooleanField(default=False)
     favorite = models.ManyToManyField('musicApp.Music', blank=True)
     history = models.ManyToManyField('musicApp.Music', related_name='user_history', blank=True)
+
+    def __str__(self):
+        return self.user.email

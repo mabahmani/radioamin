@@ -1,4 +1,3 @@
-{%  load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,18 +13,17 @@
     <title>Listen App - Online Music Streaming App</title>
 
     <!-- Favicon -->
-
-    <link href={% static "musicApp/images/logos/favicon.png" %} rel="icon"/>
+    <link href="../assets/images/logos/favicon.png" rel="icon"/>
 
     <!-- IOS Touch Icons -->
-    <link rel="apple-touch-icon" href="{% static "musicApp/images/logos/touch-icon-iphone.png" %}">
-    <link rel="apple-touch-icon" sizes="152x152" href={% static "musicApp/images/logos/touch-icon-ipad.png" %}>
-    <link rel="apple-touch-icon" sizes="180x180" href={% static "musicApp/images/logos/touch-icon-iphone-retina.png" %}>
-    <link rel="apple-touch-icon" sizes="167x167" href={% static "musicApp/images/logos/touch-icon-ipad-retina.png" %}>
+    <link rel="apple-touch-icon" href="../assets/images/logos/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/images/logos/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/logos/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/images/logos/touch-icon-ipad-retina.png">
 
     <!-- Styles -->
-    <link href={% static "musicApp/css/vendors.bundle.css" %} rel="stylesheet" type="text/css"/>
-    <link href={% static "musicApp/css/styles.bundle.css" %} rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/vendors.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/css/styles.bundle.css" rel="stylesheet" type="text/css"/>
 
     <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
@@ -63,7 +61,7 @@
         <!-- Begin | Sidebar Header -->
         <div class="sidebar-header d-flex align-items-center">
             <a href="../index.html" class="brand">
-                <img src={% static "musicApp/images/logos/logo.svg" %} alt="listen-app">
+                <img src="../assets/images/logos/logo.svg" alt="listen-app">
             </a>
 
             <button type="button" class="btn p-0 ml-auto" id="hideSidebar">
@@ -83,7 +81,7 @@
             <ul class="navbar-nav" data-scrollable="true">
                 <li class="nav-item nav-header">Browse Music</li>
                 <li class="nav-item">
-                    <a href="home.html" class="nav-link active"><i class="la la-home"></i><span>Home</span></a>
+                    <a href="home.html" class="nav-link"><i class="la la-home"></i><span>Home</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="genres.html" class="nav-link"><i class="la la-diamond"></i><span>Genres</span></a>
@@ -122,7 +120,7 @@
                     <a href="error.html" class="nav-link load-page"><i class="la la-times-circle-o"></i><span>Error</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="blank.html" class="nav-link"><i class="la la-file"></i><span>Blank</span></a>
+                    <a href="blank.html" class="nav-link active"><i class="la la-file"></i><span>Blank</span></a>
                 </li>
             </ul>
         </nav>
@@ -230,7 +228,7 @@
                             <!-- Begin | Search Result List Header -->
                             <div class="d-flex">
                                 <span class="text-uppercase mr-auto font-weight-bold text-dark">Track</span>
-                                <a href="music_list.html">View All</a>
+                                <a href="songs.html">View All</a>
                             </div>
                             <!-- End | Search Result List Header -->
                             <hr>
@@ -288,7 +286,7 @@
                             <!-- Begin | Search Result List Header -->
                             <div class="d-flex">
                                 <span class="text-uppercase mr-auto font-weight-bold text-dark">Albums</span>
-                                <a href="music_list.html">View All</a>
+                                <a href="songs.html">View All</a>
                             </div>
                             <!-- End | Search Result List Header -->
                             <hr>
@@ -352,7 +350,7 @@
                     </li>
                     <li class="dropdown fade-in">
                         <a href="javascript:void(0);" class="d-flex align-items-center py-2" role="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="avatar avatar-sm avatar-circle"><img src={% static "musicApp/images/users/thumb.jpg" %} alt="user"></div>
+                            <div class="avatar avatar-sm avatar-circle"><img src="../assets/images/users/thumb.jpg" alt="user"></div>
                             <span class="pl-2">Halo Admin</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
@@ -373,76 +371,46 @@
         <!-- End | Header -->
 
         <!-- Page Banner [[ Find at scss/base/core.scss ]] -->
-        <div class="banner bg-song"></div>
+        <div class="banner bg-home"></div>
 
         <!-- Begin | Main Container [[ Find at scss/base/core.scss ]] -->
-        <div class="main-container" id="appRoute">
-
-            <div class="row align-items-end">
-                <span class="col-6 font-weight-bold">{{ album_list.count }} Results</span>
-                <div class="col-6 ml-auto">
-                    <form action="#" class="form-inline justify-content-end">
-                        <label class="mr-2" for="filter2">Sorted By:</label>
-                        <select class="custom-select mr-sm-2" id="filter2">
-                            <option selected>Popular</option>
-                            <option value="1">A-Z</option>
-                            <option value="2">Z-A</option>
-                        </select>
-                    </form>
-                </div>
-                <div class="col-12"><hr></div>
-            </div>
-
+        <div class="main-container under-banner-content" id="appRoute">
             <div class="row section">
-                {% for album in album_list %}
-                    <div class="col-xl-3 col-lg-4 col-sm-6 pb-4">
-                        <div class="custom-card">
-                            <div class="custom-card--img">
-                                <div class="custom-card--info">
-                                    <ul class="custom-card--labels d-flex">
-                                        <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                    </ul>
-                                    <div class="dropdown dropdown-icon">
-                                        <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="ion-md-more"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li class="dropdown-item">
-                                                <a href="javascript:void(0);" class="dropdown-link favorite">
-                                                    <i class="la la-heart-o"></i>
-                                                </a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="javascript:void(0);" class="dropdown-link">
-                                                    <i class="la la-plus"></i>
-                                                </a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="javascript:void(0);" class="dropdown-link">
-                                                    <i class="la la-download"></i>
-                                                </a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="javascript:void(0);" class="dropdown-link">
-                                                    <i class="la la-share-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="{% url 'musicApp:album_detail' pk=album.pk %}" >
-                                    <img src="{{album.cover.url}}" alt="{{album.name}}" class="card-img--radius-lg">
-                                </a>
+                <div class="col-xl-11 mx-auto">
+                    <div class="row align-items-xl-center">
+                        <div class="col-xl-4 mb-4 mb-xl-0">
+                            <div class="plan-info-card text-center px-sm-5 py-sm-4 p-3">
+                                <h5 class="text-success">Basic</h5>
+                                <p>Your <span class="font-weight-bold text-success">Basic</span> subscription plan is going to expired within 10 days please select or change you plan.</p>
+                                <a href="#" class="btn btn-pill btn-air btn-primary">Change your Plan</a>
                             </div>
-
-                            <a href="{% url 'musicApp:album_detail' pk=album.pk %}" class="custom-card--link mt-2">
-                                <h6>{{album.name}}</h6>
-                                <p>{{album.singer.name}}</p>
-                            </a>
+                        </div>
+                        <div class="col-xl-4 col-md-6 mb-4 mb-md-0">
+                            <div class="plan-card text-center px-sm-5 py-sm-4 p-3">
+                                <h5 class="text-warning mb-4">Prime</h5>
+                                <ul class="list-group list-group-flush mb-5">
+                                    <li class="list-group-item">Unlimited free music</li>
+                                    <li class="list-group-item">Like, Follow, Share etc...</li>
+                                    <li class="list-group-item">Create playlist</li>
+                                    <li class="list-group-item">Listen paid track once</li>
+                                    <li class="list-group-item">Purchase track</li>
+                                </ul>
+                                <a href="#" class="btn btn-pill btn-air btn-warning">Select Now</a>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="plan-card text-center px-sm-5 py-sm-4 p-3">
+                                <h5 class="text-success mb-4">Basic</h5>
+                                <ul class="list-group list-group-flush mb-5">
+                                    <li class="list-group-item">Unlimited free music</li>
+                                    <li class="list-group-item">Like, Follow, Share etc...</li>
+                                    <li class="list-group-item">Create playlist</li>
+                                </ul>
+                                <a href="#" class="btn btn-pill btn-air btn-success">Select Now</a>
+                            </div>
                         </div>
                     </div>
-                {% endfor %}
-
+                </div>
             </div>
         </div>
         <!-- End | Main Container -->
@@ -1085,7 +1053,7 @@
 <div class="backdrop sidebar-backdrop"></div>
 
 <!-- Scripts -->
-<script src={% static "musicApp/js/vendors.bundle.js" %}></script>
-<script src={% static "musicApp/js/scripts.bundle.js" %}></script>
+<script src="../assets/js/vendors.bundle.js"></script>
+<script src="../assets/js/scripts.bundle.js"></script>
 </body>
 </html>

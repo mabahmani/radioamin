@@ -14,14 +14,13 @@
     <title>Listen App - Online Music Streaming App</title>
 
     <!-- Favicon -->
-
-    <link href={% static "musicApp/images/logos/favicon.png" %} rel="icon"/>
+    <link href="../assets/images/logos/favicon.png" rel="icon"/>
 
     <!-- IOS Touch Icons -->
-    <link rel="apple-touch-icon" href="{% static "musicApp/images/logos/touch-icon-iphone.png" %}">
-    <link rel="apple-touch-icon" sizes="152x152" href={% static "musicApp/images/logos/touch-icon-ipad.png" %}>
-    <link rel="apple-touch-icon" sizes="180x180" href={% static "musicApp/images/logos/touch-icon-iphone-retina.png" %}>
-    <link rel="apple-touch-icon" sizes="167x167" href={% static "musicApp/images/logos/touch-icon-ipad-retina.png" %}>
+    <link rel="apple-touch-icon" href="../assets/images/logos/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../assets/images/logos/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/logos/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="../assets/images/logos/touch-icon-ipad-retina.png">
 
     <!-- Styles -->
     <link href={% static "musicApp/css/vendors.bundle.css" %} rel="stylesheet" type="text/css"/>
@@ -83,7 +82,7 @@
             <ul class="navbar-nav" data-scrollable="true">
                 <li class="nav-item nav-header">Browse Music</li>
                 <li class="nav-item">
-                    <a href="home.html" class="nav-link active"><i class="la la-home"></i><span>Home</span></a>
+                    <a href="home.html" class="nav-link"><i class="la la-home"></i><span>Home</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="genres.html" class="nav-link"><i class="la la-diamond"></i><span>Genres</span></a>
@@ -122,7 +121,7 @@
                     <a href="error.html" class="nav-link load-page"><i class="la la-times-circle-o"></i><span>Error</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="blank.html" class="nav-link"><i class="la la-file"></i><span>Blank</span></a>
+                    <a href="blank.html" class="nav-link active"><i class="la la-file"></i><span>Blank</span></a>
                 </li>
             </ul>
         </nav>
@@ -230,7 +229,7 @@
                             <!-- Begin | Search Result List Header -->
                             <div class="d-flex">
                                 <span class="text-uppercase mr-auto font-weight-bold text-dark">Track</span>
-                                <a href="music_list.html">View All</a>
+                                <a href="songs.html">View All</a>
                             </div>
                             <!-- End | Search Result List Header -->
                             <hr>
@@ -288,7 +287,7 @@
                             <!-- Begin | Search Result List Header -->
                             <div class="d-flex">
                                 <span class="text-uppercase mr-auto font-weight-bold text-dark">Albums</span>
-                                <a href="music_list.html">View All</a>
+                                <a href="songs.html">View All</a>
                             </div>
                             <!-- End | Search Result List Header -->
                             <hr>
@@ -373,76 +372,65 @@
         <!-- End | Header -->
 
         <!-- Page Banner [[ Find at scss/base/core.scss ]] -->
-        <div class="banner bg-song"></div>
+        <div class="banner bg-home"></div>
 
         <!-- Begin | Main Container [[ Find at scss/base/core.scss ]] -->
-        <div class="main-container" id="appRoute">
-
-            <div class="row align-items-end">
-                <span class="col-6 font-weight-bold">{{ album_list.count }} Results</span>
-                <div class="col-6 ml-auto">
-                    <form action="#" class="form-inline justify-content-end">
-                        <label class="mr-2" for="filter2">Sorted By:</label>
-                        <select class="custom-select mr-sm-2" id="filter2">
-                            <option selected>Popular</option>
-                            <option value="1">A-Z</option>
-                            <option value="2">Z-A</option>
-                        </select>
-                    </form>
-                </div>
-                <div class="col-12"><hr></div>
-            </div>
-
+        <div class="main-container under-banner-content" id="appRoute">
             <div class="row section">
-                {% for album in album_list %}
-                    <div class="col-xl-3 col-lg-4 col-sm-6 pb-4">
-                        <div class="custom-card">
-                            <div class="custom-card--img">
-                                <div class="custom-card--info">
-                                    <ul class="custom-card--labels d-flex">
-                                        <li><span class="badge badge-pill badge-warning"><i class="la la-star"></i></span></li>
-                                    </ul>
-                                    <div class="dropdown dropdown-icon">
-                                        <a href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="ion-md-more"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li class="dropdown-item">
-                                                <a href="javascript:void(0);" class="dropdown-link favorite">
-                                                    <i class="la la-heart-o"></i>
-                                                </a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="javascript:void(0);" class="dropdown-link">
-                                                    <i class="la la-plus"></i>
-                                                </a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="javascript:void(0);" class="dropdown-link">
-                                                    <i class="la la-download"></i>
-                                                </a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="javascript:void(0);" class="dropdown-link">
-                                                    <i class="la la-share-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a href="{% url 'musicApp:album_detail' pk=album.pk %}" >
-                                    <img src="{{album.cover.url}}" alt="{{album.name}}" class="card-img--radius-lg">
-                                </a>
-                            </div>
-
-                            <a href="{% url 'musicApp:album_detail' pk=album.pk %}" class="custom-card--link mt-2">
-                                <h6>{{album.name}}</h6>
-                                <p>{{album.singer.name}}</p>
-                            </a>
+                <div class="col-xl-8 col-md-10 mx-auto">
+                    <h5 class="mb-3">Notification</h5>
+                    <div class="d-flex align-items-center mb-1">
+                        <label for="not1" class="setting-label pr-2">Get email notifications {{ music_app_user.email }}</label>
+                        <div class="switch switch-primary ml-auto">
+                            <input type="checkbox" id="not1" {% if music_app_user.setting_get_email %}checked{% endif %}>
+                            <label for="not1"></label>
                         </div>
                     </div>
-                {% endfor %}
-
+                    <div class="d-flex align-items-center">
+                        <label for="not2" class="setting-label pr-2">Get message notifications</label>
+                        <div class="switch switch-primary ml-auto">
+                            <input type="checkbox" id="not2" {% if music_app_user.setting_get_sms %}checked{% endif %}>
+                            <label for="not2"></label>
+                        </div>
+                    </div>
+                    <h5 class="mt-4 mb-3">Music Quality</h5>
+                    <div class="d-flex align-items-center mb-1">
+                        <label for="strea" class="setting-label pr-2">Streaming quality</label>
+                        <select name="strea" id="strea" class="custom-select custom-select-sm w-auto ml-auto">
+                            <option value="320" {% if music_app_user.get_setting_stream_quality_display == '320kb' %}selected{% endif %}>320kb</option>
+                            <option value="128" {% if music_app_user.get_setting_stream_quality_display == '128kb' %}selected{% endif %}>128kb</option>
+                        </select>
+                    </div>
+                    <div class="d-flex align-items-center mb-1">
+                        <label for="not2" class="setting-label pr-2">Normalize volume - Set the some volume level for all songs</label>
+                        <div class="switch switch-primary ml-auto">
+                            <input type="checkbox" id="vol1" {% if music_app_user.setting_normalize_volume %}checked{% endif %}>
+                            <label for="vol1"></label>
+                        </div>
+                    </div>
+{#                    <div class="d-flex align-items-center">#}
+{#                        <label for="level" class="setting-label pr-2">Volume level - Abjust the volume level for your enviroment</label>#}
+{#                        <select name="level" id="level" class="custom-select custom-select-sm w-auto ml-auto">#}
+{#                            <option value="0">Quiet</option>#}
+{#                            <option value="1">Normal</option>#}
+{#                            <option value="2">Loud</option>#}
+{#                            <option value="4">Louder</option>#}
+{#                        </select>#}
+{#                    </div>#}
+                    <h5 class="mt-4 mb-3">Theme</h5>
+                    <div class="d-flex align-items-center">
+                        <label for="theme" class="setting-label pr-2">Night mode</label>
+                        <div class="switch switch-primary ml-auto">
+                            <input type="checkbox" id="theme" {% if music_app_user.setting_theme_night_mode %}checked{% endif %}>
+                            <label for="theme"></label>
+                        </div>
+                    </div>
+                    <h5 class="mt-4 mb-3">History</h5>
+                    <div class="d-flex align-items-center">
+                        <label for="theme" class="setting-label pr-2">Clear you music history</label>
+                        <a href="#" class="btn btn-pill btn-sm btn-primary ml-auto">Clear Now</a>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- End | Main Container -->
