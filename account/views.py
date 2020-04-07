@@ -78,3 +78,26 @@ def add_favorite(request):
             musicAppUser.favorite.add(music)
             musicAppUser.save()
         return JsonResponse({'msg': 'success'}, safe=False)
+
+
+def change_profile(request):
+    if request.POST:
+        musicAppUser = MusicAppAccount.objects.get(user__email=request.user.email)
+        avatar = request.FILES.get('avatar_file')
+        firstName = request.POST.get('firstName')
+        lastName = request.POST.get('lastName')
+        displayName = request.POST.get('displayName')
+        userType = request.POST.get('userType')
+        location = request.POST.get('location')
+        about = request.POST.get('about')
+
+        if avatar is not None:
+            musicAppUser.avatar = avatar
+        musicAppUser.user.first_name = firstName
+        musicAppUser.user.last_name = lastName
+        musicAppUser.display_name = displayName
+        musicAppUser.location = location
+        musicAppUser.about = about
+        musicAppUser.save()
+        musicAppUser.user.save()
+        return redirect('musicApp:profile')

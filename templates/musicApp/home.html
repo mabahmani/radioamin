@@ -280,7 +280,7 @@
                                id="userMenu"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="avatar avatar-sm avatar-circle"><img
-                                        src={% static "musicApp/images/users/thumb.jpg" %} alt="user"></div>
+                                    src="{% if music_app_user.avatar %}{{ music_app_user.avatar.url }}{% else %}{% static "musicApp/images/users/thumb.jpg" %}{% endif %}" alt="user"></div>
                                 <span class="pl-2">{{user.email}}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">

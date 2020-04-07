@@ -59,7 +59,7 @@ class HomePageView(TemplateView):
         if self.request.user.is_authenticated:
             musicAppUser = MusicAppAccount.objects.get(user__email=self.request.user.email)
             context['favorites'] = musicAppUser.favorite.all()
-
+            context['music_app_user'] = musicAppUser
         return context
 
 
@@ -254,3 +254,8 @@ class PlanTemplateView(TemplateView):
 
 class ProfileTemplateView(TemplateView):
     template_name = "musicApp/profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        return context
