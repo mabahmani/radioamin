@@ -250,3 +250,7 @@ class SettingTemplateView(TemplateView):
 
 class PlanTemplateView(TemplateView):
     template_name = "musicApp/plan.html"
+
+
+class ProfileTemplateView(TemplateView):
+    template_name = "musicApp/profile.html"
