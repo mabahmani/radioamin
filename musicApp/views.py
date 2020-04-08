@@ -173,19 +173,50 @@ class ArtistDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['tracks'] = Music.objects.filter(singer=self.object).order_by('-pub_date')[:12]
         context['albums'] = Album.objects.filter(singer=self.object).order_by('-pub_date')[:12]
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
         return context
 
 
 class ArtistListView(ListView):
     model = Singer
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
+
 
 class EventDetailView(DetailView):
     model = Event
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
+
 
 class GenreListView(ListView):
     model = Genre
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
 
 
 class SongDetailView(DetailView):
@@ -194,35 +225,102 @@ class SongDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['album_songs'] = Music.objects.filter(album=self.object.album)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
         return context
 
 
 class AlbumDetailView(DetailView):
     model = Album
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
+
 
 class TopChartListView(ListView):
     queryset = Music.objects.filter(top_chart=True).order_by('-pub_date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
 
 
 class NewReleaseListView(ListView):
     queryset = Music.objects.all().order_by('-pub_date')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
+
 
 class ClassicListView(ListView):
     queryset = Music.objects.filter(genre__name='Classic')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
 
 
 class FreeMusicListView(ListView):
     queryset = Music.objects.filter(premium=False)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
+
 
 class AlbumListView(ListView):
     model = Album
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
+
 
 class PlaylistListView(ListView):
     model = Playlist
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
 
 
 class HistoryListView(ListView):
@@ -231,12 +329,30 @@ class HistoryListView(ListView):
         musicAppUser = MusicAppAccount.objects.get(user__email=self.request.user.email)
         return musicAppUser.history.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
+
 
 class FavoriteListView(ListView):
 
     def get_queryset(self):
         musicAppUser = MusicAppAccount.objects.get(user__email=self.request.user.email)
         return musicAppUser.favorite.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
 
 
 class SettingTemplateView(TemplateView):
@@ -247,9 +363,27 @@ class SettingTemplateView(TemplateView):
         context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
         return context
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
+
 
 class PlanTemplateView(TemplateView):
     template_name = "musicApp/plan.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
+        return context
 
 
 class ProfileTemplateView(TemplateView):
@@ -258,4 +392,8 @@ class ProfileTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['music_app_user'] = MusicAppAccount.objects.get(user__email=self.request.user.email)
+        context['search_artist_init'] = Singer.objects.all().order_by('-pk')[:6]
+        context['search_music_init'] = Music.objects.all().order_by('-pk')[:3]
+        context['search_album_init'] = Album.objects.all().order_by('-pk')[:3]
+        context['top_chart'] = Music.objects.filter(top_chart=True).order_by('-pub_date')[:12]
         return context
